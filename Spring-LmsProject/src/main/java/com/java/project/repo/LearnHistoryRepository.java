@@ -1,5 +1,7 @@
 package com.java.project.repo;
 
+import java.util.Map;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -27,4 +29,7 @@ public interface LearnHistoryRepository extends JpaRepository<Learn_History, Int
             + "WHERE sid=:sid AND lvl_code=:lvl_code AND begin= "
             + "(SELECT MAX(begin) FROM LearnHistory WHERE sid=:sid AND lvl_code=:lvl_code)")
     int updateLearnHistoryEnd(@Param("sid") String sid, @Param("lvl_code") int lvl_code);
+	
+	@Query("SELECT * FROM subject_list")
+    public Map<String, Object> getList();
 }
