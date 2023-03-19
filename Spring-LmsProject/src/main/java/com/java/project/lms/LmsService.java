@@ -34,7 +34,7 @@ public class LmsService
 	@Autowired
     private VideoRepository videoRepository;
 	
-	public List<Map<String,Object>> subjectList()   // join repo만들어야됨
+	public List<Map<String,Object>> getSubjectList()   // join repo만들어야됨
 	{
 		Map<String,Object> map = learnHistoryRepository.getList();
 		
