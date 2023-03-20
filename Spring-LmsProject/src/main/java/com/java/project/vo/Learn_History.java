@@ -1,5 +1,7 @@
 package com.java.project.vo;
 
+import java.sql.Timestamp;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -23,5 +25,10 @@ public class Learn_History {
 
     @Column(name = "LVL_CODE")
     private Integer lvl_code;
-
+    
+    @Column(name = "BEGIN")
+    private Timestamp begin;
+    
+    @Column(name = "END")
+    private Timestamp end;
 }

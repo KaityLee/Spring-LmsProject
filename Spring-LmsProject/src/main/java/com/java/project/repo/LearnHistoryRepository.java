@@ -21,16 +21,16 @@ public interface LearnHistoryRepository extends JpaRepository<Learn_History, Int
 	
 	@Modifying
     @Transactional
-    @Query(value = "INSERT INTO learn_history(sid, lvl_code) VALUES (:sid, :lvl_code)", nativeQuery = true)
+    @Query(value = "INSERT INTO Learn_History(sid, lvl_code) VALUES (:sid, :lvl_code)", nativeQuery = true)
     void saveLearnHistory(@Param("sid") String sid, @Param("lvl_code") int lvl_code);
 
 	@Modifying
     @Transactional
-    @Query(value = "UPDATE LearnHistory SET end=LOCALTIMESTAMP "
+    @Query(value = "UPDATE Learn_History SET end= current_timestamp "
             + "WHERE sid=:sid AND lvl_code=:lvl_code AND begin= "
-            + "(SELECT MAX(begin) FROM LearnHistory WHERE sid=:sid AND lvl_code=:lvl_code)")
+            + "(SELECT MAX(begin) FROM Learn_History WHERE sid=:sid AND lvl_code=:lvl_code)")
     int updateLearnHistoryEnd(@Param("sid") String sid, @Param("lvl_code") int lvl_code);
 	
-	@Query(value = "SELECT * FROM subject_list")
+	@Query(value = "SELECT s.lvl_code,s.description,s.subject_name,v.duration FROM Slevel s INNER JOIN Video v ON s.lvl_code=v.lvl_code")
     public Map<String, Object> getList();
 }

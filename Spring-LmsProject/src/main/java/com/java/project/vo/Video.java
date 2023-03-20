@@ -19,7 +19,7 @@ public class Video {
     private Long id;
 
     @Column(name = "lvl_code")
-    private Integer lvlCode;
+    private Integer lvl_code;
 
     @Column(name = "title")
     private String title;
