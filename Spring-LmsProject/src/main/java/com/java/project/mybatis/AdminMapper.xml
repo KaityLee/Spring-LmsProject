@@ -2,6 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.java.project.mybatis.AdminMapper">
+	
+	<select id="getReportList"
+		parameterType="Integer"
+		resultType="map">
+		SELECT * FROM report_view 
+		CROSS JOIN(SELECT CEIL(COUNT(*)/10)
+		 ttlpages FROM quiz_report) WHERE page=#{page}
+	</select>
 
 
 </mapper>

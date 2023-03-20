@@ -1,4 +1,4 @@
-package com.java.project.vo;
+package com.java.project.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -10,18 +10,17 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "learn_history")
-public class Learn_History {
+@Table(name = "QUIZ")
+public class Quiz {
 
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID")
-    private Integer id;
-
-    @Column(name = "SID")
-    private String sid;
-
-    @Column(name = "LVL_CODE")
+    @Column(name = "NUM")
+    private Integer num;
+	
+	@Column(name = "LVL_CODE")
     private Integer lvl_code;
-
+	
+	@Column(name = "LEVELTEST")
+    private String leveltest;
 }

@@ -8,14 +8,14 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.java.project.entity.Report;
+import com.java.project.entity.Slevel;
+import com.java.project.entity.Student;
+import com.java.project.entity.Video;
 import com.java.project.repo.LearnHistoryRepository;
 import com.java.project.repo.ReportRepository;
 import com.java.project.repo.StudentRepository;
 import com.java.project.repo.VideoRepository;
-import com.java.project.vo.Report;
-import com.java.project.vo.Slevel;
-import com.java.project.vo.Student;
-import com.java.project.vo.Video;
 
 
 @Service

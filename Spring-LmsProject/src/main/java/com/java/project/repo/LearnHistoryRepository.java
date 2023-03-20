@@ -10,8 +10,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.java.project.vo.Learn_History;
-import com.java.project.vo.Report;
+import com.java.project.entity.Learn_History;
+import com.java.project.entity.Report;
 
 
 public interface LearnHistoryRepository extends JpaRepository<Learn_History, Integer>{
