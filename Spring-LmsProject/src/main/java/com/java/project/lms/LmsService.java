@@ -23,15 +23,13 @@ import com.project.servlet.lms.LmsDAO;
 @Service
 public class LmsService 
 {
-	@Autowired
-	private LearnHistoryRepository learnHistoryRepository;
 	
-	@Autowired
-	private ReportRepository reportRepository;
+	private LearnHistoryRepository learnHistoryRepository;	
 	
-	@Autowired
+	private ReportRepository reportRepository;	
+	
 	private StudentRepository studentRepository;
-	@Autowired
+	
     private VideoRepository videoRepository;
 	
 	public List<Map<String,Object>> subjectList()   // join repo만들어야됨

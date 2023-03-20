@@ -10,9 +10,9 @@ import org.springframework.stereotype.Repository;
 import com.java.project.vo.Video;
 
 @Repository
-public interface VideoRepository extends JpaRepository<Video, Long> {
+public interface VideoRepository extends JpaRepository<Video, Integer> {
     
     @Query("SELECT v.title, v.fname, v.duration, v.description, q.leveltest FROM Video v INNER JOIN Quiz q ON v.lvl_code=q.lvl_code WHERE v.lvl_code=:lvlCode")
-    public Map<String, Object> getVideoByLvl_code(@Param("lvlCode") int lvl_code);
+    public Map<String, Object> getVideoByLvl_code(@Param("lvl_Code") int lvl_code);
 
 }
