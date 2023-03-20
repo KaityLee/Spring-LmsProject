@@ -1,5 +1,7 @@
 package com.java.project.admin;
 
+import java.math.BigDecimal;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -10,6 +12,9 @@ import org.springframework.stereotype.Service;
 
 import com.java.project.mybatis.AdminMapper;
 import com.java.project.repo.ReportRepository;
+import com.java.project.vo.QuizVO;
+import com.java.project.vo.ReportVO;
+import com.java.project.vo.SlevelVO;
 
 @Service
 public class AdminService {
@@ -19,11 +24,8 @@ public class AdminService {
 	@Autowired
 	private AdminMapper dao;
 
-	public List<Map<String,Object>> getReportList(String pg)
+	public List<Map<String,Object>> getReportList(int page)
 	{
-		if(pg==null) pg="1";  //페이지값 설정(pagination) : 목록
-	    int page = Integer.parseInt(pg); 
-	      
 		List<Map<String,Object>> map_list =  dao.getReportList(page);
 		List<Map<String,Object>> list = new ArrayList<>();
 		
@@ -31,6 +33,32 @@ public class AdminService {
 		{
 			Map<String,Object> map = new HashMap<>();
 			Map<String,Object> m = map_list.get(i);
+			
+			ReportVO report = new ReportVO();
+			
+			BigDecimal big = (BigDecimal)m.get("NUM");
+			report.setNum(big.intValue());
+			report.setSid((String)m.get("SID"));
+			report.setStudydate((Timestamp)m.get("STUDYDATE"));
+			
+			big = (BigDecimal)m.get("PASS");
+			report.setPass(big.intValue());
+			report.setReply((String)m.get("REPLY"));
+			
+			big = (BigDecimal)m.get("LVL_CODE");
+			report.setLvl_code(big.intValue());
+			
+			SlevelVO slevel = new SlevelVO();
+			slevel.setLvl_code(big.intValue());
+			slevel.setSubject_name((String)m.get("SUBJECT_NAME"));
+			
+			big = (BigDecimal)m.get("TTLPAGES");
+			int ttlpage = big.intValue();
+			
+			map.put("report", report);
+			map.put("slevel", slevel);
+			map.put("ttlpage", ttlpage);
+			list.add(map);
 		}
 		
 	    return list; 
@@ -38,7 +66,35 @@ public class AdminService {
 	
 	public Map<String,Object> reportDetail(int num)
 	{
-		Map<String, Object> map = dao.reportDetail(num);
+		Map<String, Object> m = dao.reportDetail(num);
+		Map<String,Object> map = new HashMap<>();
+		
+		ReportVO report = new ReportVO();
+		SlevelVO slevel = new SlevelVO();
+		QuizVO quiz = new QuizVO();
+		
+		report.setNum(num);
+		report.setSid((String)m.get("SID"));
+		report.setStudydate((Timestamp)m.get("STUDYDATE"));
+		
+		BigDecimal big = (BigDecimal)m.get("PASS");
+		report.setPass(big.intValue());
+		report.setAnswer((String)m.get("ANSWER"));
+		report.setReply((String)m.get("REPLY"));
+		
+		big = (BigDecimal)m.get("LVL_CODE");
+		report.setLvl_code(big.intValue());
+		
+		slevel.setLvl_code(big.intValue());
+		slevel.setSubject_name((String)m.get("SUBJECT_NAME"));
+		
+		quiz.setLvl_code(big.intValue());
+		quiz.setLeveltest((String)m.get("LEVELTEST"));
+		
+		map.put("report", report);
+		map.put("slevel", slevel);
+		map.put("quiz", quiz);
+		
 		return map;
 	}
 }

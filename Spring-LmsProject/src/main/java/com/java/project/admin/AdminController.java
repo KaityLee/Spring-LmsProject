@@ -1,6 +1,7 @@
 package com.java.project.admin;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,11 +24,14 @@ public class AdminController {
 	private HttpSession session;
 	
 	@GetMapping("/list")
-	public String getSubjectList(Model m) {
-		Map<String, Object> map = svc.getReportList();
-		m.addAttribute("list",map.get("list"));
-		m.addAttribute("slevel", map.get("slevel"));
-		m.addAttribute("ttlpage", map.get("ttlpage"));
+	public String getSubjectList(String pg, Model m) 
+	{
+		if(pg==null) pg="1";  //페이지값 설정(pagination) : 목록
+	    int page = Integer.parseInt(pg);
+	    
+		List<Map<String, Object>> list = svc.getReportList(page);
+		
+		m.addAttribute("list", list);
 		
 		return "lms/reportList";
 	}
