@@ -32,7 +32,7 @@ public class LmsController {
 	@GetMapping("/list")
 	public String getSubjectList(Model m) {
 		m.addAttribute("fList",svc.getSubjectList());
-		m.addAttribute("map",svc.getStudentLV());		
+		m.addAttribute("map",svc.getStudentLv());		
 		
 		return "lms/lmsStudyList";
 	}

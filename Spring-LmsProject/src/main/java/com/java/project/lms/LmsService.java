@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,22 +18,18 @@ import com.java.project.vo.Student;
 import com.java.project.vo.Video;
 
 
-
 @Service
 public class LmsService 
 {
-	@Autowired
 	private LearnHistoryRepository learnHistoryRepository;
 	
-	@Autowired
 	private ReportRepository reportRepository;
 	
-	@Autowired
 	private StudentRepository studentRepository;
-	@Autowired
+
     private VideoRepository videoRepository;
 	
-	public List<Map<String,Object>> subjectList()   // join repo만들어야됨
+	public List<Map<String,Object>> getSubjectList()   // join repo만들어야됨
 	{
 		Map<String,Object> map = learnHistoryRepository.getList();
 		

@@ -15,13 +15,13 @@ public class Learn_History {
 
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "ID")
     private Integer id;
 
-    @Column(name = "sid")
+    @Column(name = "SID")
     private String sid;
 
-    @Column(name = "lvl_code")
-    private Integer lvlCode;
+    @Column(name = "LVL_CODE")
+    private Integer lvl_code;
 
 }
