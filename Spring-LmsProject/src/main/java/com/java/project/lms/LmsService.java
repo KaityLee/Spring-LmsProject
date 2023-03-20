@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.json.simple.JSONObject;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +17,7 @@ import com.java.project.vo.Report;
 import com.java.project.vo.Slevel;
 import com.java.project.vo.Student;
 import com.java.project.vo.Video;
-import com.project.servlet.lms.LmsDAO;
+
 
 
 @Service
