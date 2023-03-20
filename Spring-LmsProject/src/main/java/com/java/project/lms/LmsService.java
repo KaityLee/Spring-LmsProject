@@ -21,15 +21,12 @@ import com.java.project.vo.Video;
 @Service
 public class LmsService 
 {
-	@Autowired
 	private LearnHistoryRepository learnHistoryRepository;
 	
-	@Autowired
 	private ReportRepository reportRepository;
 	
-	@Autowired
 	private StudentRepository studentRepository;
-	@Autowired
+
     private VideoRepository videoRepository;
 	
 	public List<Map<String,Object>> getSubjectList()   // join repo만들어야됨
