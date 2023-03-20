@@ -1,19 +1,22 @@
 package com.java.project.repo;
 
+import java.util.Map;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.java.project.vo.Learn_History;
 import com.java.project.vo.Report;
 
-@Repository
+
 public interface LearnHistoryRepository extends JpaRepository<Learn_History, Integer>{
 
-	@Query(value = "SELECT MAX(lvlCode) as lvl_code FROM LearnHistory WHERE sid = :sid")
+	@Query(value = "SELECT MAX(lvl_code) as lvl_code FROM Learn_History WHERE sid = :sid")
     Report findMaxLevelBySid(@Param("sid") String sid);
 	
 	@Modifying
@@ -27,4 +30,7 @@ public interface LearnHistoryRepository extends JpaRepository<Learn_History, Int
             + "WHERE sid=:sid AND lvl_code=:lvl_code AND begin= "
             + "(SELECT MAX(begin) FROM LearnHistory WHERE sid=:sid AND lvl_code=:lvl_code)")
     int updateLearnHistoryEnd(@Param("sid") String sid, @Param("lvl_code") int lvl_code);
+	
+	@Query(value = "SELECT * FROM subject_list")
+    public Map<String, Object> getList();
 }
