@@ -15,8 +15,8 @@ public class Student {
     @Column(name="SID")
     private String sid;
     
-    @Column(name="NAME")
-    private String name;
+    @Column(name="PWD")
+    private String pwd;
     
     @Column(name="EMAIL")
     private String email;

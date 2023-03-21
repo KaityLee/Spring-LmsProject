@@ -1,7 +1,6 @@
 package com.java.project.lms;
 
 import java.math.BigDecimal;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -12,9 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.java.project.entity.Report;
-import com.java.project.entity.Slevel;
 import com.java.project.entity.Student;
-import com.java.project.entity.Video;
 import com.java.project.mybatis.LmsMapper;
 import com.java.project.repo.LearnHistoryRepository;
 import com.java.project.repo.ReportRepository;
@@ -166,10 +163,11 @@ public class LmsService
 	}	
 
 	public Student newInfo(String sid) {
-		Student student = studentRepository.findBySid(sid);
-		if(student != null) {
-		    String email = student.getEmail(); 
-		    String phone = student.getPhone();
+		Optional<Student> student = studentRepository.findById(sid);
+		if(student.isPresent()) {
+			Student stu = student.get();
+		    String email = stu.getEmail(); 
+		    String phone = stu.getPhone();
 		    Student sv = new Student();
 		    sv.setSid(sid);
 		    sv.setEmail(email);

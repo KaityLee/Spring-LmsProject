@@ -39,7 +39,7 @@ function login()
    var date = $('#container').serialize();
    
    $.ajax({
-      url:'lmslogin',
+      url:'login',
       method:'post',
       data:date,
       dataType :'json',
@@ -49,7 +49,7 @@ function login()
          alert(res.suc? "환영합니다" : "다시 로그인 해주세요" );
          if(res.suc)
          {  
-            location.href="lms?cmd=SubjectList";
+            location.href="/lms/home";
          }
        
       },   
@@ -80,8 +80,8 @@ function login()
             </ul>
             
            <ul class="btm">
-            <li>비밀번호를 잊으셨나요?<a href="lmslogin?cmd=sidfind">비밀번호 찾기</a></li>
-            <li>회원가입하기<a href='lmslogin?cmd=addform'>회원가입</a></li>
+            <li>비밀번호를 잊으셨나요?<a href="">비밀번호 찾기</a></li>
+            <li>회원가입하기<a href='/lmslogin/register'>회원가입</a></li>
            </ul>
        </div>
   </session>

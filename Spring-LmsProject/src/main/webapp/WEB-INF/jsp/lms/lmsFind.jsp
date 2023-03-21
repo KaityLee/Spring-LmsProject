@@ -47,7 +47,7 @@ function find()
    
    
    $.ajax({
-      url:'lmslogin',
+      url:'login',
       method:'post',
       data:date,
       dataType :'json',
@@ -55,7 +55,7 @@ function find()
       success:function(res)
       {
                alert(res.finded ? "찾으시는 회원의 비밀번호는:" + res.pwd  : "일치하는 정보가 없습니다."  );
-                  location.href="lmslogin?cmd=loginform";
+                  location.href="lms?cmd=LmsLoginForm";
          
          
       },   
@@ -84,7 +84,7 @@ function find()
       </div>
    
       <button type="button" class="btn" onclick="find();">F I N D</button>
-      <button type="button" class="btn2" onclick='location.href="lmslogin?cmd=loginform"'>H O M E</button>
+      <button type="button" class="btn2" onclick='location.href="lms?cmd=LmsLoginForm"'>H O M E</button>
     </form>
     
     
