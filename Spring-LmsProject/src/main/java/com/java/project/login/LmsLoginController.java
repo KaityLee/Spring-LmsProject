@@ -19,8 +19,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.java.project.lms.LmsController;
 import com.java.project.repo.StudentRepository;
-import com.java.project.vo.Admin;
-import com.java.project.vo.Student;
+import com.java.project.entity.Admin;
+import com.java.project.entity.Student;
+import com.java.project.vo.StudentVO;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -31,6 +32,9 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("/lmslogin")
 public class LmsLoginController {
 
+	@Autowired
+	private HttpSession session;
+	
 	@GetMapping("test")
 	public String test() 
 	{
@@ -56,6 +60,7 @@ public class LmsLoginController {
 		if (stu != null)
 		{
 			map.put("suc", stu);
+			session.setAttribute("sid", stu.getSid());
 			return map;
 		}
 		else {
@@ -68,8 +73,8 @@ public class LmsLoginController {
 	@ResponseBody
 	public Map<String,Object> adminlogin(Admin admin)
 	{
-		
-		Admin atu = svc.adminlogin(admin.getAid(),admin.getApwd());
+	
+		Admin atu = svc.adminlogin(admin.getAid(),admin.getPwd());
 		log.info("관리자컨트롤러={}",atu);
 		Map<String,Object> map = new HashMap<>();
 		if (atu != null)

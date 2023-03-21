@@ -5,11 +5,10 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.java.project.entity.Admin;
+import com.java.project.entity.Student;
 import com.java.project.repo.AdminRepository;
 import com.java.project.repo.StudentRepository;
-import com.java.project.vo.Admin;
-import com.java.project.vo.Report;
-import com.java.project.vo.Student;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -53,7 +52,7 @@ public class LmsLoginService {
 		Optional<Admin> admin = arepo.findById(aid);
 		log.info("관리자서비스={}", admin);
 		
-		if (admin.isPresent() && admin.get().getApwd().equals(apwd))
+		if (admin.isPresent() && admin.get().getPwd().equals(apwd))
 		{
 			return admin.get();
 		}
@@ -65,11 +64,12 @@ public class LmsLoginService {
 	public boolean adminregister(Admin admin)
 	{
 		Admin adm = new Admin();
+				
 		log.info("관리자등록서비스={}",adm);
 		adm.setAid(admin.getAid());
-		adm.setApwd(admin.getApwd());
-		adm.setAemail(admin.getAemail());
-		adm.setAphone(admin.getAphone());
+		adm.setPwd(admin.getPwd());
+		adm.setEmail(admin.getEmail());
+		adm.setPhone(admin.getPhone());
 		
 		arepo.save(adm);
 		

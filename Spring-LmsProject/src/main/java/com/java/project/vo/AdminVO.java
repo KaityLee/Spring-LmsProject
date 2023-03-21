@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 public class AdminVO {
 	
 	private String aid;
-	private String apwd;
-	private String aemail;
-	private String aphone;
+	private String pwd;
+	private String email;
+	private String phone;
 }
