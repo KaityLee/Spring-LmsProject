@@ -28,6 +28,12 @@
 			
 	</select>
 			
-
+	<select id="getVideoByLvl_code"
+			parameterType="Integer"
+			resultType="map">
+			
+		SELECT v.*,q.leveltest FROM (SELECT * FROM video WHERE lvl_code =?) v INNER JOIN quiz q ON v.lvl_code=q.lvl_code
+		
+	</select>
 
 </mapper>

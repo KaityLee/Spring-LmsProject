@@ -9,5 +9,7 @@ import org.apache.ibatis.annotations.Mapper;
 public interface AdminMapper {
 
 	public List<Map<String, Object>> getReportList(int page);
+
+	public Map<String, Object> reportDetail(int num);
 	
 }

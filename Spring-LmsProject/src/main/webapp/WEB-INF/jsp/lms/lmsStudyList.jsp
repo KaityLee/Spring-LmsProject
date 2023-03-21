@@ -151,13 +151,13 @@ function lvCheck(lvl_code) //학습하기버튼 (이곳에서 lvl_code와 pass�
 		}
 		else if(lvl_code<=${map.rv.lvl_code})  //단계가 낮은단계라면.
 		{		 	
-		 	location.href='lms?cmd=study&lvl_code='+lvl_code;		 	
+		 	location.href='lms/study?lvl_code='+lvl_code;		 	
 		}
 	 	else if(lvl_code==${map.rv.lvl_code}+1)
 		 {
 		 	if(${map.rv.pass}>0)
 		 	{
-		 		  location.href='lms?cmd=study&lvl_code='+lvl_code;
+		 		  location.href='lms/study?lvl_code='+lvl_code;
 		 	}
 		 	else
 		 	{

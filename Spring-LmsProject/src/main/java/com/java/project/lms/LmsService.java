@@ -181,7 +181,7 @@ public class LmsService
 
 	public Map<String,Object> getStudy(int lvl_code)  // 주성 : 학습자료 출력.
 	{
-		Map<String,Object> map = videoRepository.getVideoByLvl_code(lvl_code);
+		Map<String,Object> map = dao.getVideoByLvl_code(lvl_code);
 		return map;	//lvl_code에 해당하는 quiz와 그에 맞는 VideoVO를 넣은 map을 출력.
 
 	}

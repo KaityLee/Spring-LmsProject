@@ -9,7 +9,6 @@ import org.springframework.stereotype.Repository;
 
 import com.java.project.entity.Video;
 
-public interface VideoRepository extends JpaRepository<Video, Integer> {
-    
+public interface VideoRepository extends JpaRepository<Video, Integer> {    
 
 }
