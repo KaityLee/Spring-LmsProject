@@ -8,7 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
@@ -24,12 +27,13 @@ public class AdminController {
 	private HttpSession session;
 	
 	@GetMapping("/list")
-	public String getSubjectList(String pg, Model m) 
+	public String getSubjectList(@RequestParam String page, Model m) 
 	{
-		if(pg==null) pg="1";  //페이지값 설정(pagination) : 목록
-	    int page = Integer.parseInt(pg);
+		int pg=0;
+		if(page==null) pg=1;  //페이지값 설정(pagination) : 목록
+	    pg = Integer.parseInt(page);
 	    
-		List<Map<String, Object>> list = svc.getReportList(page);
+		List<Map<String, Object>> list = svc.getReportList(pg);
 		
 		m.addAttribute("list", list);
 		
@@ -37,12 +41,31 @@ public class AdminController {
 	}
 	
 	@GetMapping("/detail")
-	public String reportDetail(int num, Model m) 
+	public String reportDetail(@RequestParam int num, Model m) 
 	{
 		Map<String,Object> map = svc.reportDetail(num);
 		m.addAttribute("report",map.get("report"));
 		m.addAttribute("slevel",map.get("slevel"));
 		m.addAttribute("quiz",map.get("quiz"));
 		return "lms/reportDetail";
+	}
+	
+	@PostMapping("/pass")
+	@ResponseBody
+	public Map<String,Object> reportPass(int num)
+	{
+		Map<String,Object> map = new HashMap<>();
+		boolean pass = svc.reportPass(num);
+		map.put("pass", pass);
+		return map;
+	}
+	
+	@PostMapping("/reply")
+	@ResponseBody
+	public Map<String,Object> reportReply(int num, String reply)
+	{
+		boolean saved = svc.reportReply(num, reply);
+		Map<String,Object> map = new HashMap<>();
+		return map;
 	}
 }

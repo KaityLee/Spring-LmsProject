@@ -24,6 +24,7 @@ public class AdminService {
 	@Autowired
 	private AdminMapper dao;
 
+	/** 학생이 제출한 report 목록을 불러오는 메소드 - 소영*/
 	public List<Map<String,Object>> getReportList(int page)
 	{
 		List<Map<String,Object>> map_list =  dao.getReportList(page);
@@ -64,6 +65,7 @@ public class AdminService {
 	    return list; 
 	}
 	
+	/** 특정 report를 선택했을때 detail을 불러오는 메소드 - 소영*/
 	public Map<String,Object> reportDetail(int num)
 	{
 		Map<String, Object> m = dao.reportDetail(num);
@@ -96,5 +98,30 @@ public class AdminService {
 		map.put("quiz", quiz);
 		
 		return map;
+	}
+	
+	/** 관리자가 통과시켰을때 pass를 1로 바꿔주는 메소드 - 소영*/
+	public boolean reportPass(int num)
+	{
+		ReportVO report = new ReportVO();
+		
+		try {
+	        reportRepository.reportPass(num);
+	        return true;
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+	    return false;
+	}
+	
+	/** 관리자의 답변을 저장시키는 메소드 - 소영*/
+	public boolean reportReply(int num, String reply) {
+	    try {
+	        reportRepository.reportReply(num, reply);
+	        return true;
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+	    return false;
 	}
 }

@@ -28,9 +28,9 @@ function pass()
       var num = ${report.num};
       
       $.ajax({
-         url :'lms',   
+         url :'/lms/pass',   
          method : 'post',
-         data : {"num":num, "cmd":"reportPass"},              
+         data : {"num":num},              
          cache : false,
          dataType : 'json',         
            success : function(res)
@@ -65,15 +65,15 @@ function reply()
    $.ajax({
       url :'lms',   
       method : 'post',
-      data : {"reply":reply,"num":num, "cmd":"reportReply"},              
+      data : {"reply":reply,"num":num},              
       cache : false,
       dataType : 'json',         
         success : function(res)
         {                                                                 
-           alert(res.reply?'전송되었습니다' : '전송 실패');
-           if(res.reply)
+           alert(res.saved?'전송되었습니다' : '전송 실패');
+           if(res.saved)
            {
-               location.href='lms?cmd=reportList';
+               location.href='lms/list';
            }
       },
       error : function(xhr,status,err){
