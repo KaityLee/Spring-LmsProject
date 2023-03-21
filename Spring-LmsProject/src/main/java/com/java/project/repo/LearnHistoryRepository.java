@@ -24,13 +24,6 @@ public interface LearnHistoryRepository extends JpaRepository<Learn_History, Int
     @Query(value = "INSERT INTO learn_history(sid, lvl_code) VALUES (:sid, :lvl_code)", nativeQuery = true)
     void saveLearnHistory(@Param("sid") String sid, @Param("lvl_code") int lvl_code);
 
-	@Modifying
-    @Transactional
-    @Query(value = "UPDATE LearnHistory SET end=LOCALTIMESTAMP "
-            + "WHERE sid=:sid AND lvl_code=:lvl_code AND begin= "
-            + "(SELECT MAX(begin) FROM LearnHistory WHERE sid=:sid AND lvl_code=:lvl_code)")
-    int updateLearnHistoryEnd(@Param("sid") String sid, @Param("lvl_code") int lvl_code);
 	
-	@Query(value = "SELECT * FROM subject_list")
-    public Map<String, Object> getList();
+
 }

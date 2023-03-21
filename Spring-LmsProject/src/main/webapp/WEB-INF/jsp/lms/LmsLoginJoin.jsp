@@ -99,33 +99,40 @@ function join()
         return false;
       }
     
-      
-   var date = $("#joinForm").serialize();
+    
+    var date = $("#joinForm").serialize();
+    alert(date);
+    $.ajax({
+       url:'register',
+       method:'post',
+       data:date,
+       dataType :'json',
+       cache:false,
+       success:function(res)
+       {
+    	      
+                alert(res.save ?"가입되었습니다." : "가입에 실패하였습니다.");
+                if(res.save)
+                {  
+                   location.href="/lmslogin/login";
+                }
+          
+       },   
+          error : function(xhr, status, err){
+             alert(err);
+       }
        
-   $.ajax({
-      url:'lmslogin',
-      method:'post',
-      data:date,
-      dataType :'json',
-      cache:false,
-      success:function(res)
-      {
-               alert(res.added ?"가입되었습니다." : "가입에 실패하였습니다.");
-               if(res.added)
-               {  
-                  location.href="lmslogin?cmd=loginform";
-               }
-         
-      },   
-         error : function(xhr, status, err){
-            alert(err);
-      }
-      
-   });
-   
+    });
+    
 }
 </script>
 <body>
+<header>
+        
+        <h1><img id='center'src="/JavaWeb/images/logo-new2208.png"></h1>  
+    
+    
+</header>
 <main>
  <form class="joinForm" id="joinForm">
                                                                                                
@@ -141,7 +148,7 @@ function join()
       </div>
       
         <div class="textForm">
-        <input id="pwd2" name="pwd" type="password" class="pwd" placeholder="비밀번호 확인" onkeyup="searchFunction();">
+        <input id="pwd2" name="pwd2" type="password" class="pwd" placeholder="비밀번호 확인" onkeyup="searchFunction();">
       </div>
       <span id="checkMessage" style="color:red;font-weight:bold"></span>
    
@@ -155,7 +162,7 @@ function join()
       </div>
    
       <button type="button" class="btn" onclick="join();">J O I N</button>
-      <button type="button" class="btn2" onclick='location.href="lmslogin?cmd=loginform"'>H O M E</button>
+      <button type="button" class="btn2" onclick='location.href="/lmslogin/login"'>H O M E</button>
     </form>
     
     
