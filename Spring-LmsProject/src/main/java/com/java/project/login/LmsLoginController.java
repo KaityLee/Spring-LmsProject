@@ -62,7 +62,7 @@ public class LmsLoginController {
 	public Map<String,Object> adminlogin(Admin admin)
 	{
 		
-		Admin atu = svc.adminlogin(admin.getAid(),admin.getApwd());
+		Admin atu = svc.adminlogin(admin.getAid(),admin.getPwd());
 		log.info("관리자컨트롤러={}",atu);
 		Map<String,Object> map = new HashMap<>();
 		if (atu != null)

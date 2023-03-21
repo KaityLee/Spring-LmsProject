@@ -15,14 +15,14 @@ import lombok.Data;
 	    @Column(name="AID")
 	    private String aid;
 	    
-	    @Column(name="APWD")
-	    private String apwd;
+	    @Column(name="PWD")
+	    private String pwd;
 	    
-	    @Column(name="AEMAIL")
-	    private String aemail;
+	    @Column(name="EMAIL")
+	    private String email;
 	    
-	    @Column(name="APHONE")
-	    private String aphone;
+	    @Column(name="PHONE")
+	    private String phone;
 
 		
 	}

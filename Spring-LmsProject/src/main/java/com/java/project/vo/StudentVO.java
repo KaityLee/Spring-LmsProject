@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class StudentVO {
+public class StudentVO{
 	
 	private String sid;
 	private String pwd;

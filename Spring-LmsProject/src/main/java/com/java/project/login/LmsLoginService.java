@@ -53,7 +53,7 @@ public class LmsLoginService {
 		Optional<Admin> admin = arepo.findById(aid);
 		log.info("관리자서비스={}", admin);
 		
-		if (admin.isPresent() && admin.get().getApwd().equals(apwd))
+		if (admin.isPresent() && admin.get().getPwd().equals(apwd))
 		{
 			return admin.get();
 		}
@@ -67,9 +67,9 @@ public class LmsLoginService {
 		Admin adm = new Admin();
 		log.info("관리자등록서비스={}",adm);
 		adm.setAid(admin.getAid());
-		adm.setApwd(admin.getApwd());
-		adm.setAemail(admin.getAemail());
-		adm.setAphone(admin.getAphone());
+		adm.setPwd(admin.getPwd());
+		adm.setEmail(admin.getEmail());
+		adm.setPhone(admin.getPhone());
 		
 		arepo.save(adm);
 		
