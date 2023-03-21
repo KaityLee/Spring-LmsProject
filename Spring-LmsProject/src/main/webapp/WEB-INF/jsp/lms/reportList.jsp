@@ -42,7 +42,7 @@ $(function(){
    if(aid=='')
    {
       alert('로그인이 필요합니다');
-      location.href = '/JavaWeb/lmslogin?cmd=adminloginform';
+      location.href = '/lmslogin/test';
    }
    
    //pgColor();
@@ -92,18 +92,19 @@ function pgColor()
 <tr><th>번호</th><th>과목</th><th>아이디</th><th>날짜</th><th>통과여부</th></tr>
 </thead>
 <tbody>
-   <c:forEach var="r" items="${list}">
+   <c:forEach var="map" items="${list}">
+   	<c:set var="report" value="${map.report}"/>
       <tr>
-         <td>${r.num}</td>
+         <td>${report.num}</td>
          <td>
-         <c:set var="lvl_code" value="${r.lvl_code}"/>
-         ${slevel[lvl_code]}
+         <c:set var="lvl_code" value="${report.lvl_code}"/>
+         ${map.slevel.subject_name}
          </td>
-         <td><a id='tag' href="lms?cmd=reportDetail&num=${r.num}">${r.sid}</a></td>
-         <td>${r.studydate}</td>
+         <td><a id='tag' href="lms/detail&num=${report.num}">${report.sid}</a></td>
+         <td>${report.studydate}</td>
          <td>
-         <c:set var="pass" value="${r.pass}"/>
-         <c:set var="reply" value="${r.reply}"/>
+         <c:set var="pass" value="${report.pass}"/>
+         <c:set var="reply" value="${report.reply}"/>
          <c:if test="${pass==1}">합격</c:if>
          <c:if test="${pass==0&&reply==null}">미채점</c:if>
          <c:if test="${pass==0&&reply!=null}"><p>불합격</p></c:if>
@@ -114,7 +115,7 @@ function pgColor()
 </table>
 <p>
 <div id='listNum'>
-   <c:forEach begin="1" end="${ttlpage}" var="var">
+   <c:forEach begin="1" end="${list[0].ttlpage}" var="var">
       <a id="${var}" href="lms?cmd=reportList&page=${var}" 
       style="text-decoration:none">[${var}]</a>
    </c:forEach>
