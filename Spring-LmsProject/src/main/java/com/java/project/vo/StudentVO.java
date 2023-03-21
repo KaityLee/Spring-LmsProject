@@ -9,5 +9,4 @@ public class StudentVO {
 	private String pwd;
 	private String phone;
 	private String email;
-	
 }

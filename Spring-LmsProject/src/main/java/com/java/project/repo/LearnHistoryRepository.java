@@ -23,5 +23,4 @@ public interface LearnHistoryRepository extends JpaRepository<Learn_History, Int
     @Transactional
     @Query(value = "INSERT INTO Learn_History(sid, lvl_code) VALUES (:sid, :lvl_code)", nativeQuery = true)
     void saveLearnHistory(@Param("sid") String sid, @Param("lvl_code") int lvl_code);
-
 }

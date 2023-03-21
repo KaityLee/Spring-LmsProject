@@ -11,5 +11,4 @@ import com.java.project.entity.Video;
 
 public interface VideoRepository extends JpaRepository<Video, Integer> {
     
-
 }
