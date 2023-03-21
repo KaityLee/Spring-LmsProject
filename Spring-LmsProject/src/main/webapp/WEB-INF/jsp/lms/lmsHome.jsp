@@ -71,7 +71,7 @@ a {
 	</a>
 	
 	
-	<a href='lms?cmd=SubjectList'>
+	<a href='/lms/list'>
 		<div id="learning">
 			<h1>LEARNING</h1>
 			</div>

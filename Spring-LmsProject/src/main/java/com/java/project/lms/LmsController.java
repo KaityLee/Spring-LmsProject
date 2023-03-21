@@ -31,8 +31,11 @@ public class LmsController {
 	
 	@GetMapping("/list")
 	public String getSubjectList(Model m) {
-		m.addAttribute("fList",svc.getSubjectList());
-		m.addAttribute("map",svc.getStudentLv());		
+		
+		//String sid = (String)session.getAttribute("sid"); 
+		String sid = "gogo"; // :: 테스트 
+		m.addAttribute("list",svc.getSubjectList());
+		m.addAttribute("map",svc.getStudentLv(sid));			
 		
 		return "lms/lmsStudyList";
 	}

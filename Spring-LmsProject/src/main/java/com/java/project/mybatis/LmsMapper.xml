@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.java.project.mybatis.LmsMapper">
+
+	<select id="getList"
+			resultType="map">
+			
+		SELECT s.lvl_code,s.description,s.subject_name,v.duration FROM Slevel s INNER JOIN Video v ON s.lvl_code=v.lvl_code		
+			
+	</select>
+
+
+	<select id="getStudentLv"
+			parameterType="String"
+			resultType="Integer">
+	
+		SELECT MAX(lvl_code) as lvl_code FROM learn_history WHERE sid=#{sid}	
+	
+	</select>
+	
+	
+	<select id="getPass"
+			parameterType="String"
+			resultType="Integer">
+			
+		SELECT MAX(pass) as p FROM quiz_report WHERE lvl_code=(SELECT MAX(lvl_code) FROM learn_history WHERE sid=#{sid})AND sid=#{sid}	
+			
+	</select>
+			
+
+
+</mapper>
