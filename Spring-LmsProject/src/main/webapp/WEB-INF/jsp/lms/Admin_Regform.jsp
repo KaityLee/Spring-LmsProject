@@ -5,54 +5,111 @@
 <head>
 <meta charset="utf-8">
 <title></title>
+</head>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
 <style>
-body{margin: 0;}
-@font-face {
-    font-family: dotum;
-    src: local('KoPubWorld돋움체 Regular'), url('https://cdn.jsdelivr.net/gh/webfontworld/kopus/KoPubWorldDotumMedium.woff2') format('woff2');
+  * { margin: 0px; padding: 0px; text-decoration: none; font-family:sans-serif;}
+
+body { background-image:#34495e; background-color : #FFFFF1;} 
+
+.joinForm { position:absolute; width:400px; height:400px; padding: 30px, 20px; background-color: #FFFFF1;
+ text-align:center; top:40%; left:50%; transform: translate(-50%,-50%); border-radius: 15px;}
+
+.joinForm h2 { text-align: center;margin: 30px;}
+
+.textForm { border-bottom: 2px solid #adadad; margin: 30px; padding: 10px 10px;}
+
+.h4 {color: #f62b33; font-size:8px; height:25px; background: none; }
+
+.sid { width: 100%; border:none; outline:none; color: #636e72; font-size:16px; height:25px; background: none;}
+
+.pwd { width: 100%; border:none; outline:none; color: #636e72; font-size:16px; height:25px; background: none;}
+
+.email { width: 100%; border:none; outline:none; color: #636e72; font-size:16px; height:25px; background: none;}
+
+
+.phone { width: 100%; border:none; outline:none; color: #636e72; font-size:16px; height:25px; background: none;
 }
 
-header { position: relative; display: flex; justify-content: space-between; align-items: center; background: rgba(39,39,46); width: 100%; height: 100px;  }
-header .option div {width: 220px; height: 50px;}
-.right_top ul  {list-style: none;  position: absolute; top: 10px; right: 100px;  }
-.right_btm ul  {list-style: none;  position: absolute; top: 50px; right: 50px; }
-.right_top ul li{float: left; padding-right: 10px; font-size: 15px; font-family: dotum; }
-.right_btm ul li{float: left; padding-right: 10px; font-size: 15px; font-family: dotum; }
-.right_top ul li a {color: white; }
-.right_btm ul li a {color: white; }
+.btn { position:relative; left:40%; transform: translateX(-50%); margin-bottom: 40px; width:80%; height:40px; background: linear-gradient(125deg,#81ecec,#6c5ce7,#81ecec);
+ background-position: left; background-size: 200%; color:white; font-weight: bold; border:none; cursor:pointer; transition: 0.4s; display:inline;
+}
+.btn2 { position:relative; left:40%; transform: translateX(-50%); margin-bottom: 40px; width:80%; height:40px; background: linear-gradient(125deg,#81ecec,#6c5ce7,#81ecec);
+ background-position: left; background-size: 200%; color:white; font-weight: bold; border:none; cursor:pointer; transition: 0.4s; display:inline; text-align: center;
+}
 
-session {position:relative;  display:flex; align-items: center;  justify-content: center; margin-top: 100px;}
-
-.logo {width: 250px; height: 80px; }
-session div.regform {border: 3px solid; border-color: black;padding: 40px;}
-session div.regform div.aid {padding: 20px;}
-session div.regform div.pwd {padding: 20px;}
-session div.regform div.phone {padding: 20px;}
-session div.regform div.email {padding: 20px;}
-session div.regform div.aid .aaid {width: 200px; height: 30px; font-size: 20px; font-family: dotum; border-radius: 10px;}
-session div.regform div.pwd .ppwd {width: 200px; height: 30px; font-size: 20px; font-family: dotum; border-radius: 10px;}
-session div.regform div.phone .pphone {width: 200px; height: 30px; font-size: 20px; font-family: dotum; border-radius: 10px;}
-session div.regform div.email .eemail {width: 200px; height: 30px; font-size: 20px; font-family: dotum; border-radius: 10px;}
-session div.regform button.submit {width: 80px; position: relative; left: 80px; }
+.btn:hover {
+  background-position: right;
+  }
+.btn2:hover{
+  background-position: right;
+  
+}
 </style>
-<script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
 <script type="text/javascript">
-    function regform()
+function searchFunction()
 {
+   var pw = $('#pwd').val();
+   var pw2 = $('#pwd2').val();
+   
+    if(pw != pw2)
+    {
+       $('#checkMessage').html("비밀번호가 일치하지 않습니다.");
+    }
+     else 
+     {
+       $('#checkMessage').html("");
+     }
+  
+}  
+function join()
+{
+	var pwd = $('#apwd').val();
+    var aid = $('#aid').val();
+    var email = $('#aemail').val();
+    var phone = $('#aphone').val();
+    
+    var num = pwd.search(/[0-9]/g);
+    var eng = pwd.search(/[a-z]/ig);
+    
+   
+    console.log(pwd +','+ aid +','+ email +','+ phone +','+ num +','+ eng);
+    
+    if(aid=="" || pwd=="" || email=="" || phone=="" )
+      {
+         alert('모든 항목은 필수로 입력되어야 합니다.');
+         return false;
+      }
+    
+    if(pwd.length < 8 || pwd.length > 20)
+      {
+
+       alert("비밀번호 8자리 ~ 20자리 이내로 입력해주세요.");
+       return false;
+      }
+    else if(pwd.search(/\s/) != -1)
+      {
+      alert("비밀번호는 공백 없이 입력해주세요.");
+       return false;
+      }
+    else if(num < 0 || eng < 0 )
+       {
+        alert("영문,숫자를 혼합하여 입력해주세요.");
+        return false;
+      }
 	
-	var keyword = $('#leg').serialize();
+	var date = $('#adjoinForm').serialize();
 		$.ajax({
-			url:'lmslogin',
+			url:'adminregister',
 			method:'post',
-			data: keyword,
+			data: date,
 			cache:false,
 			dataType:'json',
 			success:function(res){
-				if(res.register)
+				 alert(res.save ?"가입되었습니다." : "가입에 실패하였습니다.");
+				if(res.save)
 				{ 
-				  
-				    alert("선생님 정보가 등록되었습니다! ");
-					location.href='lmslogin?cmd=adminloginform';
+					location.href="/lmslogin/adminlogin";
 				}
 				else
 					{
@@ -66,47 +123,45 @@ session div.regform button.submit {width: 80px; position: relative; left: 80px; 
 		});
 	}
 </script>
-</head>
-<body></body>
 <body>
-    <header>
+<header>
         
-        <img id='left'src="/JavaWeb/images/badge-best-campus-common.png">
-        <h1><img id='center'src="/JavaWeb/images/logo-new2208.png"></h1>
-    <div class="option">
-        <div class="right_top">
-         <ul>
-            <li><a href="/ezen/campus/campus_info.asp">캠퍼스위치</a></li>
-            <li><a href="/ezen/license/?scc=1">자격증소개</a></li>
-            <li><a href="/ezen/community/review.asp">수강후기</a></li>
-         </ul>
-         </div>
-         <div class="right_btm">
-         <ul>
-            <li><a href="/ezen/club/" class="link" target="_blank">강사클럽</a></li>
-            <li><a href="/ezen/community/book_list.asp" class="link" target="_blank">교재</a></li>
-            <li><a href="https://edu.ezenac.co.kr/" class="link" target="_blank">온라인에듀</a></li>
-            <li><a href="//member.ezenac.co.kr/ezen/member/member_join.asp" class="link sign">회원가입</a></li>
-            <li><a href="//member.ezenac.co.kr/ezen/member/member_login.asp" class="link login">로그인</a></li>            
-         </ul>
-        </div>
-    </div>
+        <h1><img id='center'src="/JavaWeb/images/logo-new2208.png"></h1>  
     
 </header>
-<session>
-    <form id="leg">
-    <input type='hidden' name="cmd" value="regseq"> 
-    <div class="regform">
-        <div>
-            <img class="logo" src="/JavaWeb/images/admin_image1.png"></img>
-        </div>
-        <div class="aid"><input class= 'aaid' name='aid'type='text'placeholder='ID'></div>
-        <div class="pwd"><input class= 'ppwd'name='pwd'type='password'placeholder="PWD"></div>
-        <div class="phone"><input class='pphone' name='phone' type='text'placeholder="PHONE"></div>
-        <div class="email"><input class='eemail' name='email' type='text' placeholder="EMAIL"></div>
-        <button type="button" class="submit" onclick="regform();" >작성완료</button>
-    </div>
+
+ <main>
+    <form class="adjoinForm" id="adjoinForm">
+                                                                                               
+      <h2>회원가입</h2>
+       <input type="hidden" name="cmd" value="join">
+      
+      <div class="textForm">
+        <input id="aid" name="aid" type="text" class="aid" placeholder="아이디">
+      </div>
+      
+      <div class="textForm">
+        <input id="apwd" name="apwd" type="password" class="apwd" placeholder="비밀번호" >
+      </div>
+      
+        <div class="textForm">
+        <input id="apwd2" name="apwd2" type="password" class="apwd" placeholder="비밀번호 확인" onkeyup="searchFunction();">
+      </div>
+      <span id="checkMessage" style="color:red;font-weight:bold"></span>
+   
+      
+      <div class="textForm">
+        <input id="aphone" name="aphone" type="text" class="aphone" placeholder="전화번호">
+      </div>
+      
+        <div class="textForm">
+        <input id="aemail" name="aemail" type="text" class="aemail" placeholder="이메일">
+      </div>
+   
+      <button type="button" class="btn" onclick="join();">J O I N</button>
+      <button type="button" class="btn2" onclick='location.href="/lmslogin/adminlogin"'>H O M E</button>
     </form>
-</session>
+ </main>   
+
 </body>
 </html>

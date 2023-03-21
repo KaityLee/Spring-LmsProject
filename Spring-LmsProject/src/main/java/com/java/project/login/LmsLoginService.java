@@ -1,0 +1,80 @@
+package com.java.project.login;
+
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.java.project.repo.AdminRepository;
+import com.java.project.repo.StudentRepository;
+import com.java.project.vo.Admin;
+import com.java.project.vo.Report;
+import com.java.project.vo.Student;
+
+import lombok.extern.slf4j.Slf4j;
+
+@Service
+@Slf4j
+public class LmsLoginService {
+	@Autowired
+	private StudentRepository repo;
+	
+	@Autowired
+	private AdminRepository arepo;
+	
+	public boolean register(Student student)
+	{
+        Student std = new Student();
+        log.info("등록서비스={}",std);
+        
+        std.setSid(student.getSid());
+        std.setPwd(student.getPwd());
+        std.setEmail(student.getEmail());
+        std.setPhone(student.getPhone());
+        
+		repo.save(std);
+	
+		return true;
+	}
+	
+	public Student login(String sid, String pwd)
+	{
+		Optional<Student> student = repo.findById(sid);
+		log.info("서비스={}", student);
+		if (student.isPresent() && student.get().getPwd().equals(pwd))
+		{
+			return student.get();
+		}
+		return null;
+	}
+	
+	public Admin adminlogin(String aid, String apwd)
+	{
+		Optional<Admin> admin = arepo.findById(aid);
+		log.info("관리자서비스={}", admin);
+		
+		if (admin.isPresent() && admin.get().getApwd().equals(apwd))
+		{
+			return admin.get();
+		}
+		return null;
+	}
+	
+	
+	
+	public boolean adminregister(Admin admin)
+	{
+		Admin adm = new Admin();
+		log.info("관리자등록서비스={}",adm);
+		adm.setAid(admin.getAid());
+		adm.setApwd(admin.getApwd());
+		adm.setAemail(admin.getAemail());
+		adm.setAphone(admin.getAphone());
+		
+		arepo.save(adm);
+		
+		return true;
+	}
+	
+	
+}
