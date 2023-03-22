@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.java.project.mybatis.AdminMapper;
-import com.java.project.repo.ReportRepository;
+import com.java.project.repo.QuizReportRepository;
 import com.java.project.vo.QuizVO;
 import com.java.project.vo.ReportVO;
 import com.java.project.vo.SlevelVO;
@@ -19,7 +19,7 @@ import com.java.project.vo.SlevelVO;
 @Service
 public class AdminService {
 	
-	private ReportRepository reportRepository;
+	private QuizReportRepository reportRepository;
 	
 	@Autowired
 	private AdminMapper dao;

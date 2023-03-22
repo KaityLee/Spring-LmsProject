@@ -42,7 +42,7 @@ $(function(){
    if(aid=='')
    {
       alert('로그인이 필요합니다');
-      location.href = '/lmslogin/test';
+      location.href = '/lmslogin/adminlogin';
    }
    
    //pgColor();
