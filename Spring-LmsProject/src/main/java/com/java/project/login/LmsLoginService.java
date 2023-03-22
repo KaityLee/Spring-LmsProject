@@ -21,7 +21,7 @@ public class LmsLoginService {
 	@Autowired
 	private AdminRepository arepo;
 	
-	public boolean register(Student student)
+	public boolean register(Student student) // 현명
 	{
         Student std = new Student();
         log.info("등록서비스={}",std);
@@ -36,7 +36,7 @@ public class LmsLoginService {
 		return true;
 	}
 	
-	public Student login(String sid, String pwd)
+	public Student login(String sid, String pwd) //현명
 	{
 		Optional<Student> student = repo.findById(sid);
 		log.info("서비스={}", student);
@@ -47,7 +47,7 @@ public class LmsLoginService {
 		return null;
 	}
 	
-	public Admin adminlogin(String aid, String apwd)
+	public Admin adminlogin(String aid, String apwd) //현명
 	{
 		Optional<Admin> admin = arepo.findById(aid);
 		log.info("관리자서비스={}", admin);
@@ -61,7 +61,7 @@ public class LmsLoginService {
 	
 	
 	
-	public boolean adminregister(Admin admin)
+	public boolean adminregister(Admin admin) //현명
 	{
 		Admin adm = new Admin();
 				

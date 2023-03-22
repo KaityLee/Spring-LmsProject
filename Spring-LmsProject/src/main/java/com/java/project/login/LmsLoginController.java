@@ -45,7 +45,7 @@ public class LmsLoginController {
 		return "lms/LmsLoginForm";
 	}
 	
-	@PostMapping("/login")
+	@PostMapping("/login") //현명
 	@ResponseBody
 	public Map<String,Object> login(Student student)
 	{
@@ -64,7 +64,7 @@ public class LmsLoginController {
 		}
 	}
 	
-	@PostMapping("/adminlogin")
+	@PostMapping("/adminlogin") //현명
 	@ResponseBody
 	public Map<String,Object> adminlogin(Admin admin)
 	{
@@ -84,13 +84,13 @@ public class LmsLoginController {
 		
 	}
 	
-	@GetMapping("/register")
+	@GetMapping("/register") //현명
 	public String register()
 	{
 		return "lms/LmsLoginJoin";
 	}
 	
-	@PostMapping("/register")
+	@PostMapping("/register") //현명
 	@ResponseBody
 	public Map<String,Object> register(Student student)
 	{
@@ -101,7 +101,7 @@ public class LmsLoginController {
 		return map;
 	}
 	
-	@PostMapping("/adminregister")
+	@PostMapping("/adminregister") //현명
 	@ResponseBody
 	public Map<String,Object> adminregister(Admin admin)
 	{
@@ -112,7 +112,7 @@ public class LmsLoginController {
 		return map;
 	}
 
-	@GetMapping("/adminlogin")
+	@GetMapping("/adminlogin") // 현명
 	public String adminlogin()
 	{
 		return "lms/Admin_Login";
@@ -120,7 +120,7 @@ public class LmsLoginController {
 	
 	
 	
-	@GetMapping("/adminregister")
+	@GetMapping("/adminregister") //현
 	public String adminregister()
 	{
 		return "lms/Admin_Regform";
