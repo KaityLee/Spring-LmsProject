@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -70,8 +69,8 @@ function Login()
        <input type="hidden" name="cmd" value="adminlogin">
         <li> <label for='aid'> 아이디 </label> 
         <input type="text"  name="aid" id="aid"></li>
-        <li> <label for='apwd'> 비밀번호 </label> 
-        <input type="password" name="apwd" id="apwd"></li>
+        <li> <label for='pwd'> 비밀번호 </label> 
+        <input type="password" name="pwd" id="pwd"></li>
         <li><a onclick="Login();" >로그인</a></li>
         </ul>
         

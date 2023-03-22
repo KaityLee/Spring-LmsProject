@@ -12,7 +12,9 @@ public interface LmsMapper {
 	
 	public Integer getStudentLv(String sid);
 	
-	public Integer getPass(String sid);
+	public int getPass(String sid);
+
+	public Map<String, Object> getVideoByLvl_code(int lvl_code);
 	
 	
 }

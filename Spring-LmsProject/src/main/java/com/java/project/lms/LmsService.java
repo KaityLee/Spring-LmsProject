@@ -1,7 +1,6 @@
 package com.java.project.lms;
 
 import java.math.BigDecimal;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -12,10 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.java.project.entity.Quiz_Report;
-import com.java.project.entity.Report;
-import com.java.project.entity.Slevel;
 import com.java.project.entity.Student;
-import com.java.project.entity.Video;
 import com.java.project.mybatis.LmsMapper;
 import com.java.project.repo.LearnHistoryRepository;
 import com.java.project.repo.ReportRepository;
@@ -169,9 +165,10 @@ public class LmsService
 
 	public Student newInfo(String sid) {
 		Optional<Student> student = studentRepository.findById(sid);
-		if(student != null) {
-		    String email = student.get().getEmail(); 
-		    String phone = student.get().getPhone();
+		if(student.isPresent()) {
+			Student stu = student.get();
+		    String email = stu.getEmail(); 
+		    String phone = stu.getPhone();
 		    Student sv = new Student();
 		    sv.setSid(sid);
 		    sv.setEmail(email);
@@ -183,7 +180,7 @@ public class LmsService
 
 	public Map<String,Object> getStudy(int lvl_code)  // 주성 : 학습자료 출력.
 	{
-		Map<String,Object> map = videoRepository.getVideoByLvl_code(lvl_code);
+		Map<String,Object> map = dao.getVideoByLvl_code(lvl_code);
 		return map;	//lvl_code에 해당하는 quiz와 그에 맞는 VideoVO를 넣은 map을 출력.
 
 	}

@@ -1,9 +1,5 @@
 <%@page import="com.java.project.entity.Video"%>
 <%@ page contentType="text/html; charset=utf-8"  pageEncoding="utf-8"%>
-<%
-   Video video = (Video)request.getAttribute("video");
-   String[] str = video.getDuration().split(":");
-%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -60,16 +56,16 @@ function showassign(){
 function submit_assign(){
     if (confirm('등록하시겠습니까?'))
       {
-          var ser = $('#assignment').serialize();
+          var data = $('#assignment').serialize();
             $.ajax({
-               url : 'lms',
+               url : 'lms/post',
                method:'post',
-               data : ser,
+               data : data,
                dataType : 'json',
                cache : false,
                success : function(res){
                   alert(res.suc ? "제출 완료" : "제출 실패");
-                  location.href="lms?cmd=SubjectList";
+                  location.href="lms/list";
                },
                error : function(xhr,status,err){
                   alert(err);
@@ -83,14 +79,14 @@ function end() {
    {
       var end = $('#end').serialize();
          $.ajax({
-            url : 'lms',
+            url : 'lms/end_study',
             method:'post',
             data : end,
             dataType : 'json',
             cache : false,
             success : function(res){
                alert(res.suc ? "학습종료" : "에러");
-               location.href="lms?cmd=SubjectList";
+               location.href="lms/list";
             },
             error : function(xhr,status,err){
                alert(err);
@@ -104,7 +100,6 @@ function end() {
 <header>
    <form id="end">
       <input type="hidden" name="lvl_code" value="${video.lvl_code}">
-      <input type="hidden" name="cmd" value="end_study">
       <input type="hidden" name="sid" value="${sid}">
       <button id='endbtn' type="button" onclick="end();">학습종료</button>
    </form>
@@ -124,7 +119,6 @@ function end() {
 	   <div id="assign_form">
 	      <form id="assignment">
 	         <input type="hidden" name="lvl_code" value="${video.lvl_code}">
-	         <input type="hidden" name="cmd" value="post">
 	         <input type="hidden" name="sid" value="${sid}">
 	         <h4>${quiz}</h4>
 	         <textarea rows="5" cols="40" name="answer"></textarea>

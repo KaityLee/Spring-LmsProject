@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import jakarta.servlet.http.HttpSession;
@@ -33,7 +34,7 @@ public class LmsController {
 	public String getSubjectList(Model m) {
 		
 		String sid = (String)session.getAttribute("sid"); 
-		//String sid = "gogo"; // :: 테스트 
+
 		m.addAttribute("list",svc.getSubjectList());
 		m.addAttribute("map",svc.getStudentLv(sid));			
 		
@@ -46,7 +47,8 @@ public class LmsController {
 	}
 	
 	@GetMapping("/study")
-	public String getStudy() {
+	public String getStudy(Model m,@RequestParam int lvl_code) {
+		svc.getStudy(lvl_code);
 		return "lms/study";
 	}
 	

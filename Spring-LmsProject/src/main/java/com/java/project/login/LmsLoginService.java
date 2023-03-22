@@ -1,7 +1,6 @@
 package com.java.project.login;
 
 import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,6 +9,7 @@ import com.java.project.entity.Student;
 import com.java.project.repo.AdminRepository;
 import com.java.project.repo.StudentRepository;
 import com.java.project.vo.AdminVO;
+import com.java.project.vo.ReportVO;
 import com.java.project.vo.StudentVO;
 
 import lombok.extern.slf4j.Slf4j;
@@ -17,6 +17,7 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 @Slf4j
 public class LmsLoginService {
+	
 	@Autowired
 	private StudentRepository repo;
 	

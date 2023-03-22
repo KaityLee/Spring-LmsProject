@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html>
 <head> 
@@ -64,10 +63,10 @@ function searchFunction()
 }  
 function join()
 {
-	var pwd = $('#apwd').val();
+	var pwd = $('#pwd').val();
     var aid = $('#aid').val();
-    var email = $('#aemail').val();
-    var phone = $('#aphone').val();
+    var email = $('#email').val();
+    var phone = $('#phone').val();
     
     var num = pwd.search(/[0-9]/g);
     var eng = pwd.search(/[a-z]/ig);
@@ -141,21 +140,21 @@ function join()
       </div>
       
       <div class="textForm">
-        <input id="apwd" name="apwd" type="password" class="apwd" placeholder="비밀번호" >
+        <input id="pwd" name="pwd" type="password" class="pwd" placeholder="비밀번호" >
       </div>
       
         <div class="textForm">
-        <input id="apwd2" name="apwd2" type="password" class="apwd" placeholder="비밀번호 확인" onkeyup="searchFunction();">
+        <input id="pwd2" name="pwd2" type="password" class="pwd" placeholder="비밀번호 확인" onkeyup="searchFunction();">
       </div>
       <span id="checkMessage" style="color:red;font-weight:bold"></span>
    
       
       <div class="textForm">
-        <input id="aphone" name="aphone" type="text" class="aphone" placeholder="전화번호">
+        <input id="phone" name="phone" type="text" class="phone" placeholder="전화번호">
       </div>
       
         <div class="textForm">
-        <input id="aemail" name="aemail" type="text" class="aemail" placeholder="이메일">
+        <input id="email" name="email" type="text" class="email" placeholder="이메일">
       </div>
    
       <button type="button" class="btn" onclick="join();">J O I N</button>
