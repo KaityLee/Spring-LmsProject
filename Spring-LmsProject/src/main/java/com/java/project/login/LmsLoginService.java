@@ -5,11 +5,10 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.java.project.entity.Admin;
+import com.java.project.entity.Student;
 import com.java.project.repo.AdminRepository;
 import com.java.project.repo.StudentRepository;
-import com.java.project.vo.Admin;
-import com.java.project.vo.Report;
-import com.java.project.vo.Student;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -65,6 +64,7 @@ public class LmsLoginService {
 	public boolean adminregister(Admin admin)
 	{
 		Admin adm = new Admin();
+				
 		log.info("관리자등록서비스={}",adm);
 		adm.setAid(admin.getAid());
 		adm.setPwd(admin.getPwd());

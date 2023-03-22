@@ -1,4 +1,4 @@
-<%@page import="com.java.project.vo.Video"%>
+<%@page import="com.java.project.entity.Video"%>
 <%@ page contentType="text/html; charset=utf-8"  pageEncoding="utf-8"%>
 <%
    Video video = (Video)request.getAttribute("video");

@@ -10,8 +10,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.java.project.vo.Learn_History;
-import com.java.project.vo.Report;
+import com.java.project.entity.Learn_History;
+import com.java.project.entity.Report;
 
 
 public interface LearnHistoryRepository extends JpaRepository<Learn_History, Integer>{
@@ -21,9 +21,7 @@ public interface LearnHistoryRepository extends JpaRepository<Learn_History, Int
 	
 	@Modifying
     @Transactional
-    @Query(value = "INSERT INTO learn_history(sid, lvl_code) VALUES (:sid, :lvl_code)", nativeQuery = true)
+    @Query(value = "INSERT INTO Learn_History(sid, lvl_code) VALUES (:sid, :lvl_code)", nativeQuery = true)
     void saveLearnHistory(@Param("sid") String sid, @Param("lvl_code") int lvl_code);
-
-	
 
 }

@@ -64,14 +64,14 @@ a {
 <body>
 
 	
-	<a href='lmslogin?cmd=loginform'>
+	<a href='/lmslogin/login'>
 		<div id="login">
 			<h1>LOGIN</h1>
 		</div>
 	</a>
 	
 	
-	<a href='lms?cmd=SubjectList'>
+	<a href='/lms/list'>
 		<div id="learning">
 			<h1>LEARNING</h1>
 			</div>

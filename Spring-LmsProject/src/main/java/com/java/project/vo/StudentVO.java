@@ -1,5 +1,6 @@
 package com.java.project.vo;
 
+import lombok.Data;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

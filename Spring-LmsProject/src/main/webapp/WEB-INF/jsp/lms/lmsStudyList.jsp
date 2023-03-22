@@ -143,19 +143,19 @@ button:hover:before,button:hover:after{
 
 function lvCheck(lvl_code) //학습하기버튼 (이곳에서 lvl_code와 pass여부를 따져줍니다.)
 {	
-	alert('현재 레벨 : ' + ${rv.lvl_code} + '클릭한 수업 레벨' + lvl_code);
+	alert('현재 레벨 : ' + ${map.rv.lvl_code} +"\n" +'클릭한 수업 레벨 : ' + lvl_code);
 	
-		if(${rv.lvl_code}==0) 
+		if(${map.rv.lvl_code}==0) 
 		{
 			alert('로그인을 하셔야 이용 가능한 서비스입니다.');
 		}
-		else if(lvl_code<=${rv.lvl_code})  //단계가 낮은단계라면.
+		else if(lvl_code<=${map.rv.lvl_code})  //단계가 낮은단계라면.
 		{		 	
 		 	location.href='lms?cmd=study&lvl_code='+lvl_code;		 	
 		}
-	 	else if(lvl_code==${rv.lvl_code}+1)
+	 	else if(lvl_code==${map.rv.lvl_code}+1)
 		 {
-		 	if(${rv.pass}>0)
+		 	if(${map.rv.pass}>0)
 		 	{
 		 		  location.href='lms?cmd=study&lvl_code='+lvl_code;
 		 	}
@@ -196,7 +196,6 @@ setInterval(jackinthebox1,4050);
 
 <div align='center'>
 <h1>SUBJECTLIST</h1>    
-       
 
 <table>
     <thead>
@@ -215,23 +214,15 @@ setInterval(jackinthebox1,4050);
     
     <tbody>   	
 	   
-	  <c:forEach var='m' begin='0' end='0' items='${fList}'>	    
-	   	<c:forEach var='l' begin='0' end='2' items='${m.llist}' varStatus="status">	    	          	
-		   <tr>
-		        <td><label>${l.subject_name}</label></td> 
-		        <td> <label>${l.description}</label></td>
-		        <td><button type='button' onclick='lvCheck(${l.lvl_code});'>GO LEARNING</button></td>
-			         
-			   	<td> <label>${m.dList[status.index].duration}</label></td>			        
-		     
-		  </c:forEach>  
-		        
-		  </tr>	   	 
-	</c:forEach>  
+	  <c:forEach var='m' begin='0' end='2' items='${list}'>	       	          	
+		    <tr>
+		        <td><label>${m.slv.subject_name}</label></td> 
+		        <td> <label>${m.slv.description}</label></td>
+		        <td><button type='button' onclick='lvCheck(${m.slv.lvl_code});'>GO LEARNING</button></td>			         
+			   	<td> <label>${m.dur}</label></td>				   		    
+		    </tr>	   	 
+		 </c:forEach> 
 		
-    	   
- 	</body>
- 
  <thead>
  	<tr>
         <th>CHAPTER2</th>
@@ -244,19 +235,12 @@ setInterval(jackinthebox1,4050);
     </tr>
     </thead>
 	    <tbody>
-	    <c:forEach var='m' begin='0' end='0' items='${fList}'>	    
-	    	<c:forEach var='l' begin='3' end='5' items='${m.llist}' varStatus="status">	    	          	
+	    <c:forEach var='m' begin='3' end='5' items='${list}'>	       	          	
 		    <tr>
-		        <td><label>${l.subject_name}</label></td> 
-		        <td> <label>${l.description}</label></td>
-		        <td><button type='button' onclick='lvCheck(${l.lvl_code});'>GO LEARNING</button></td>
-			         
-			   	<td> <label>${m.dList[status.index].duration}</label></td>			        
-		     
-		    </c:forEach>  
-		  
-		   
-		    
+		        <td><label>${m.slv.subject_name}</label></td> 
+		        <td> <label>${m.slv.description}</label></td>
+		        <td><button type='button' onclick='lvCheck(${m.slv.lvl_code});'>GO LEARNING</button></td>			         
+			   	<td> <label>${m.dur}</label></td>				   		    
 		    </tr>	   	 
 		 </c:forEach>  
 		

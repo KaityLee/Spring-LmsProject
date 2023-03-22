@@ -1,23 +1,32 @@
 package com.java.project.lms;
 
+import java.math.BigDecimal;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.java.project.entity.Report;
+import com.java.project.entity.Slevel;
+import com.java.project.entity.Student;
+import com.java.project.entity.Video;
+import com.java.project.mybatis.LmsMapper;
 import com.java.project.repo.LearnHistoryRepository;
 import com.java.project.repo.ReportRepository;
 import com.java.project.repo.StudentRepository;
 import com.java.project.repo.VideoRepository;
-import com.java.project.vo.Report;
-import com.java.project.vo.Slevel;
-import com.java.project.vo.Student;
-import com.java.project.vo.Video;
+import com.java.project.vo.ReportVO;
+import com.java.project.vo.SlevelVO;
 
+import jakarta.servlet.http.HttpSession;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Service
 public class LmsService 
 {
@@ -25,40 +34,114 @@ public class LmsService
 	
 	private ReportRepository reportRepository;
 	
-	private StudentRepository studentRepository;
+	private StudentRepository studentRepository;	
 
-    private VideoRepository videoRepository;
+    private VideoRepository videoRepository;    
+    
+    @Autowired
+	private HttpSession session;
+    
+    @Autowired
+    private LmsMapper dao;
 	
-	public List<Map<String,Object>> getSubjectList()   // join repo만들어야됨
+	public List<Map<String,Object>> getSubjectList()   // 학습목록 가져오기 - 지환씨
 	{
-		Map<String,Object> map = learnHistoryRepository.getList();
+		List<Map<String,Object>> dlist = dao.getList();
+		List<Map<String,Object>> list = new ArrayList<>();
 		
-		List<Slevel> list = (List<Slevel>)map.get("list");
-		List<Video> dList = (List<Video>)map.get("dList");
-		
-		Map<String,Object> nMap = new HashMap<>();
-		List<Map<String,Object>> fList = new ArrayList<>();		
-		
-		for(int i = 0 ; i<list.size(); i++)
+		for(int i =0 ; i < dlist.size() ; i++)
 		{
-			nMap.put("llist",list);								
-			fList.add(nMap);							
-		}
-		
-		for(int i =0 ; i<dList.size(); i++)
-		{
-			nMap.put("dList", dList);
-			fList.add(nMap);
-		}	
-		
-		return fList;
+			Map<String,Object> m = dlist.get(i);
+			Map<String,Object> map = new HashMap<>();
+			
+			BigDecimal lvl_code = (BigDecimal) m.get("LVL_CODE");
+			String description = (String)m.get("DESCRIPTION");
+			String subject_name = (String)m.get("SUBJECT_NAME");
+			String duration = (String) m.get("DURATION");
+			
+			SlevelVO slv = new SlevelVO();
+			slv.setDescription(description);
+			slv.setLvl_code(lvl_code.intValue());
+			slv.setSubject_name(subject_name);
+			
+			map.put("slv", slv);
+			map.put("dur", duration);
+			
+			list.add(map);			
+		}		
+		return list;
 	}
 
-	public Map<String,Object> getStudentLv()  // join repo만들어야됨
+	public Map<String,Object> getStudentLv(String sid)  // 학생 레벨과 과제 pass여부에 따라 학습제한 및 표시.
 	{
-		Map<String,Object> map = new HashMap<>();
+		Map<String,Object> map = new HashMap<>();				
+		ReportVO rv = new ReportVO();
+		
+		if(sid!=null) // 로그인 有
+		{
+			Optional<Object> oblvl =  Optional.ofNullable(dao.getStudentLv(sid));
+			Optional<Object> obpass =  Optional.ofNullable(dao.getPass(sid));
+			
+			if(oblvl.isPresent()) // 1) 로그인 有 2) 학습기록 有 - 기존학생
+			{			
+				int stuLv = dao.getStudentLv(sid);
+				rv.setLvl_code(stuLv);
+				map.put("lvl_code", stuLv);
+				
+				List<Map<String,Object>> list = getSubjectList();
+				for(int i=0; i< list.size() ; i++)
+				{
+					Map<String,Object> sub =  list.get(i);
+					if(stuLv== ((SlevelVO)sub.get("slv")).getLvl_code())
+					{
+						map.put("nowlevel",((SlevelVO)sub.get("slv")).getSubject_name());						
+						continue;
+					}					
+				}				
+				if(obpass.isPresent()) // 1) 로그인 有 2) 학습기록 有 3)과제제출 有
+				{
+					int passByLv = dao.getPass(sid);
+					map.put("pass", passByLv);
+					map.put("rv", rv);
+					if(passByLv>0)
+					{
+						map.put("passinfo", "합격");
+					}		
+					else
+					{
+						map.put("passinfo", "공부중");
+					}										
+				}
+				else // 1) 로그인 有 2) 학습기록 有 3)과제제출 無
+				{
+					rv.setPass(0);
+					map.put("pass값", rv.getPass());
+					map.put("passinfo", "공부중");
+					map.put("rv", rv);					
+				}						
+			}
+			else // 1) 로그인 有 2) 학습기록 無 - 신규학생
+			{
+				rv = new ReportVO();    //rv객체를 새로 만들어서 첫번째 강의를 들을 수 있게 설정해준다.
+				rv.setPass(0);
+				rv.setLvl_code(101);				
+				map.put("nowlevel", "Java");
+				map.put("passinfo", "공부중");
+				map.put("rv", rv);
+			}			
+		}		
+		else //로그인 無 - 게스트
+		{
+			rv = new ReportVO();
+			rv.setLvl_code(0);
+			map.put("rv", rv);
+			map.put("nowlevel", "GUEST");
+			map.put("passinfo", "로그인하세요");			
+		}		
+		log.info("map : "  + map);
 		return map;
 	}
+	
 	
 	public Map<String,Object> myInfo(String sid) 
 	{		

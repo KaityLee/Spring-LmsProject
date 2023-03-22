@@ -1,7 +1,7 @@
-<%@page import="com.java.project.vo.Video"%>
+<%@page import="com.java.project.vo.VideoVO"%>
 <%@ page contentType="text/html; charset=utf-8"  pageEncoding="utf-8"%>
 <%
-   Video video = (Video)request.getAttribute("video");
+   VideoVO video = (VideoVO)request.getAttribute("video");
    String[] str = video.getDuration().split(":");
 %>
 <!DOCTYPE html>
