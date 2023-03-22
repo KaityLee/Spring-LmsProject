@@ -34,6 +34,9 @@ public class LmsLoginController {
     @Autowired
     private LmsLoginService svc;
     
+    @Autowired
+    private HttpSession session;
+    
 	@GetMapping("/login")
 	public String login(HttpServletRequest request)
 	{
@@ -49,6 +52,7 @@ public class LmsLoginController {
 		Map<String,Object> map = new HashMap<>();
 		if (stu != null)
 		{
+			session.setAttribute("sid", stu.getSid());
 			map.put("suc", stu);
 			return map;
 		}

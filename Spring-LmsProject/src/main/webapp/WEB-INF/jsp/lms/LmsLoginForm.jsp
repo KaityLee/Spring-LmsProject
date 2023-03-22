@@ -49,7 +49,7 @@ function login()
          alert(res.suc? "환영합니다" : "다시 로그인 해주세요" );
          if(res.suc)
          {  
-            location.href="/lms/home";
+            location.href="/lms/list";
          }
        
       },   

@@ -64,7 +64,7 @@ a {
 <body>
 
 	
-	<a href='lmslogin?cmd=loginform'>
+	<a href='/lmslogin/login'>
 		<div id="login">
 			<h1>LOGIN</h1>
 		</div>
