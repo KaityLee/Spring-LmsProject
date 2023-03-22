@@ -4,18 +4,21 @@ package com.java.project.login;
 import java.util.HashMap;
 import java.util.Map;
 
-
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 
 import com.java.project.lms.LmsController;
 import com.java.project.repo.StudentRepository;
+import com.java.project.entity.Admin;
+import com.java.project.entity.Student;
 import com.java.project.vo.AdminVO;
 import com.java.project.vo.StudentVO;
 
@@ -27,6 +30,15 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @RequestMapping("/lmslogin")
 public class LmsLoginController {
+
+	@Autowired
+	private HttpSession session;
+	
+	@GetMapping("test")
+	public String test() 
+	{
+		return "lms/LmsLoginForm";
+	}
 	
     @Autowired
     private LmsLoginService svc;
@@ -41,12 +53,13 @@ public class LmsLoginController {
 	@ResponseBody
 	public Map<String,Object> login(StudentVO student)
 	{
-		StudentVO stu = svc.login(student.getSid(), student.getPwd());
+		Student stu = svc.login(student.getSid(), student.getPwd());
 		log.info("컨트롤러={}",stu);
 		Map<String,Object> map = new HashMap<>();
 		if (stu != null)
 		{
 			map.put("suc", stu);
+			session.setAttribute("sid", stu.getSid());
 			return map;
 		}
 		else {
@@ -57,10 +70,10 @@ public class LmsLoginController {
 	
 	@PostMapping("/adminlogin")
 	@ResponseBody
-	public Map<String,Object> adminlogin(AdminVO admin)
+	public Map<String,Object> adminlogin(Admin admin)
 	{
-		
-		AdminVO atu = svc.adminlogin(admin.getAid(),admin.getPwd());
+	
+		Admin atu = svc.adminlogin(admin.getAid(),admin.getPwd());
 		log.info("관리자컨트롤러={}",atu);
 		Map<String,Object> map = new HashMap<>();
 		if (atu != null)
@@ -116,4 +129,5 @@ public class LmsLoginController {
 	{
 		return "lms/Admin_Regform";
 	}
+	
 }

@@ -23,6 +23,7 @@ import com.java.project.repo.StudentRepository;
 import com.java.project.repo.VideoRepository;
 import com.java.project.vo.ReportVO;
 import com.java.project.vo.SlevelVO;
+import com.java.project.vo.StudentVO;
 
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
@@ -167,10 +168,10 @@ public class LmsService
 	}	
 
 	public Student newInfo(String sid) {
-		Student student = studentRepository.findBySid(sid);
+		Optional<Student> student = studentRepository.findById(sid);
 		if(student != null) {
-		    String email = student.getEmail(); 
-		    String phone = student.getPhone();
+		    String email = student.get().getEmail(); 
+		    String phone = student.get().getPhone();
 		    Student sv = new Student();
 		    sv.setSid(sid);
 		    sv.setEmail(email);

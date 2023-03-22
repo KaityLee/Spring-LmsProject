@@ -5,12 +5,11 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.java.project.entity.Admin;
+import com.java.project.entity.Student;
 import com.java.project.repo.AdminRepository;
 import com.java.project.repo.StudentRepository;
-import com.java.project.vo.Admin;
 import com.java.project.vo.AdminVO;
-import com.java.project.vo.Report;
-import com.java.project.vo.Student;
 import com.java.project.vo.StudentVO;
 
 import lombok.extern.slf4j.Slf4j;
@@ -26,7 +25,7 @@ public class LmsLoginService {
 	
 	public boolean register(StudentVO student)
 	{
-        StudentVO std = new StudentVO();
+        Student std = new Student();
         log.info("등록서비스={}",std);
         
         std.setSid(student.getSid());
@@ -39,9 +38,9 @@ public class LmsLoginService {
 		return true;
 	}
 	
-	public StudentVO login(String sid, String pwd)
+	public Student login(String sid, String pwd)
 	{
-		Optional<StudentVO> student = repo.findById(sid);
+		Optional<Student> student = repo.findById(sid);
 		log.info("서비스={}", student);
 		if (student.isPresent() && student.get().getPwd().equals(pwd))
 		{
@@ -50,9 +49,9 @@ public class LmsLoginService {
 		return null;
 	}
 	
-	public AdminVO adminlogin(String aid, String apwd)
+	public Admin adminlogin(String aid, String apwd)
 	{
-		Optional<AdminVO> admin = arepo.findById(aid);
+		Optional<Admin> admin = arepo.findById(aid);
 		log.info("관리자서비스={}", admin);
 		
 		if (admin.isPresent() && admin.get().getPwd().equals(apwd))
@@ -66,7 +65,7 @@ public class LmsLoginService {
 	
 	public boolean adminregister(AdminVO admin)
 	{
-		AdminVO adm = new AdminVO();
+		Admin adm = new Admin();
 		log.info("관리자등록서비스={}",adm);
 		adm.setAid(admin.getAid());
 		adm.setPwd(admin.getPwd());

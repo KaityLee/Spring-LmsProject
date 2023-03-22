@@ -10,9 +10,9 @@ public interface LmsMapper {
 
 	public List<Map<String,Object>> getList();
 	
-	public int getStudentLv(String sid);
+	public Integer getStudentLv(String sid);
 	
-	public int getPass(String sid);
+	public Integer getPass(String sid);
 	
 	
 }
