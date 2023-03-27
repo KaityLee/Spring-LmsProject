@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.java.project.entity.Student;
+import com.java.project.repo.StudentRepository;
+
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 
@@ -24,6 +27,9 @@ public class LmsController {
 	private LmsService svc;
 	@Autowired
 	private HttpSession session;
+	
+	@Autowired
+	private StudentRepository srepo;
 	
 	@GetMapping("/home")
 	public String home() {
@@ -42,7 +48,11 @@ public class LmsController {
 	}
 	
 	@GetMapping("/myinfo")
-	public String myinfo() {
+	public String myinfo(Model m) {
+		String sid = (String)session.getAttribute("sid");
+		Student stu = srepo.findBySid(sid);
+		
+		m.addAttribute("stu", stu);
 		return "lms/MyInfo";
 	}
 	

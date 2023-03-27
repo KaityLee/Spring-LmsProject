@@ -9,50 +9,47 @@
 <style>
 
 body {				   
-				  padding:1.5em;
-				  background: #FFFFE6;
-				  justify-content: center;
+	  padding:1.5em;
+	  background: #FFFFE6;
+	  justify-content: center;
 }
 
-.king
+#content
 {
 	position : absolute;
-	left : 43%;
+	left : 37%;
 	top : 20%;	
+	text-align:center;
 }
 
+li{list-style:none; border:1px solid silver;padding:20px;}
+ul{padding-left:0; text-align:center;}
+#titleul{ float:left; background-color:white;}
+#cont{float:left;background-color:white; width:400px;}
 </style>
 <body>
 
 
-<div class='king'>
+<div id='content'>
 
 <h1>MYINFO</h1>
-
-   <div class='first'>      
-  		 <label > I D </label>   ${sv.sid}
-   </div>
+	<div id='cont_box'>
+		<ul id="titleul">
+		  	<li><span>아이디</span></li>	  
+		 	<li><span>이메일</span></li>	  
+		 	<li><pan>전화번호</span></li>
+		</ul>  
+	    <ul id="cont">
+		  	<li><span>${stu.sid}</span></li>	  
+		 	<li><span>${stu.email}</span></li>	  
+		 	<li><pan>${stu.phone}</span></li>
+		</ul>  
+	</div>
    
- 	<div class='second'>  
- 	  	<label> EMAIL </label>${sv.email}
-    </div>
+	<a id="info_link" href="/lms/list"><button> LIST </button> </a>
    
-	<div class='third'>  
- 	 	 <label> PHONE </label>${sv.phone}
-   </div>
-   
-  <div class='fourth'>  
-  	 <label> MAX_LV </label>${rv.lvl_code}
-   </div>
-   
-   <div class='fifth'>  
-   <label> REPORT </label><c:set var="pass" value="${rv.pass}"/>        
-								         <c:if test="${pass==1}">제출한 과제가 합격되었습니다.</c:if>
-								         <c:if test="${pass==0}">해당과목 과제 정보가 없습니다.</c:if>
-								         
+				         
   </div>
-
-	<a id="info_link" href="lms?cmd=SubjectList"> LIST </a>
 
 		
 

@@ -25,7 +25,7 @@
 	})
 </script>
 <div id='container'><label>ID: ${sid}</label><label> ${map.nowlevel} </label> <label> ${map.passinfo} </label>
-   <a id="logout_link" href="lmslogin?cmd=logout"> ★LOGOUT★ </a>
-   <a id="login_link" href="lmslogin?cmd=loginform"> ★LOGIN★ </a>
-   <a id="info_link" href="lms?cmd=myinfo"> ☆MYINFO☆ </a>
+   <a id="logout_link" href="/lmslogin/logout"> ★LOGOUT★ </a>
+   <a id="login_link" href="/lmslogin/login"> ★LOGIN★ </a>
+   <a id="info_link" href="/lms/myinfo"> ☆MYINFO☆ </a>
 </div>
