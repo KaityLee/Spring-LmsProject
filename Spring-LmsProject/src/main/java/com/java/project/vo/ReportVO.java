@@ -11,7 +11,7 @@ public class ReportVO {
 	private int num;
 	private int lvl_code;
 	private String sid;
-	private Date studydate;
+	private Timestamp studydate;
 	private String answer;
 	private int pass;
 	private String reply;

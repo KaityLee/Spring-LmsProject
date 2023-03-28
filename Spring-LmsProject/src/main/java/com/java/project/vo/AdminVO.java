@@ -1,9 +1,8 @@
 package com.java.project.vo;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
-
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -14,5 +13,4 @@ public class AdminVO {
 	private String pwd;
 	private String email;
 	private String phone;
-
 }

@@ -28,9 +28,9 @@ function pass()
       var num = ${report.num};
       
       $.ajax({
-         url :'lms',   
+         url :'/lms/pass',   
          method : 'post',
-         data : {"num":num, "cmd":"reportPass"},              
+         data : {"num":num},              
          cache : false,
          dataType : 'json',         
            success : function(res)
@@ -65,15 +65,15 @@ function reply()
    $.ajax({
       url :'lms',   
       method : 'post',
-      data : {"reply":reply,"num":num, "cmd":"reportReply"},              
+      data : {"reply":reply,"num":num},              
       cache : false,
       dataType : 'json',         
         success : function(res)
         {                                                                 
-           alert(res.reply?'전송되었습니다' : '전송 실패');
-           if(res.reply)
+           alert(res.saved?'전송되었습니다' : '전송 실패');
+           if(res.saved)
            {
-               location.href='lms?cmd=reportList';
+               location.href='lms/list';
            }
       },
       error : function(xhr,status,err){
@@ -118,8 +118,7 @@ function reply()
    <td id ='num'>번호</td>      <td>${report.num}</td>
    <td id='sid'>작성자</td>   <td colspan="3">${report.sid}</td>
    <td id ='lvl_code'>과목</td>      <td>
-               <c:set var="lvl_code" value="${report.lvl_code}"/>
-                  ${slevel[lvl_code]}
+                  ${slevel.subject_name}
                </td>
    <td id ='studydate'>날짜</td>      <td>${report.studydate}</td>
    <td id='passrsl'>통과여부</td>   <td><c:set var="pass" value="${report.pass}"/>
@@ -131,8 +130,7 @@ function reply()
 </tr>
 <tr>
    <td  id='question' colspan="2">문제</td>   <td colspan="10">
-         <c:set var="lvl_code" value="${report.lvl_code}"/>
-          ${quiz[lvl_code]}
+          ${quiz.leveltest}
    </td>
 </tr>
 <tr>

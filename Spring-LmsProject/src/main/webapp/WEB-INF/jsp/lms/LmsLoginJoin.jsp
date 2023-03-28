@@ -1,9 +1,9 @@
 <%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html>
 <head>
 <meta charset="utf-8">
-<title>회원가입 화면</title>
+<title>사용자 회원가입</title>
 </head>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
 <style>
@@ -127,16 +127,11 @@ function join()
 }
 </script>
 <body>
-<header>
-        
-        <h1><img id='center'src="/JavaWeb/images/logo-new2208.png"></h1>  
-    
-    
-</header>
+
 <main>
  <form class="joinForm" id="joinForm">
                                                                                                
-      <h2>회원가입</h2>
+      <h2>사용자 회원가입</h2>
        <input type="hidden" name="cmd" value="join">
       
       <div class="textForm">

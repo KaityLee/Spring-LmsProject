@@ -10,16 +10,18 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.java.project.entity.QuizReport;
 import com.java.project.entity.Report;
 import com.java.project.entity.Student;
 import com.java.project.mybatis.LmsMapper;
 import com.java.project.repo.LearnHistoryRepository;
-import com.java.project.repo.ReportRepository;
+import com.java.project.repo.QuizReportRepository;
 import com.java.project.repo.StudentRepository;
 import com.java.project.repo.VideoRepository;
 import com.java.project.vo.ReportVO;
 import com.java.project.vo.SlevelVO;
 import com.java.project.vo.VideoVO;
+import com.java.project.vo.StudentVO;
 
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
@@ -31,7 +33,7 @@ public class LmsService
 	@Autowired
 	private LearnHistoryRepository learnHistoryRepository;
 	
-	private ReportRepository reportRepository;
+	private QuizReportRepository reportRepository;
 	
 	private StudentRepository studentRepository;	
 
@@ -156,7 +158,7 @@ public class LmsService
 	        sv.setEmail(email);
 	        sv.setPhone(phone);
 	        map.put("sv", sv);
-	        Report rv = new Report();
+	        QuizReport rv = new QuizReport();
 	        rv.setLvl_code(lvlCode);
 	        rv.setPass(pass);
 	        map.put("rv", rv);

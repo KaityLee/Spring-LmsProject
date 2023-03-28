@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html>
-<head>
+<head> 
 <meta charset="utf-8">
-<title></title>
+<title>관리자 회원가입</title>
 </head>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
 <style>
@@ -11,16 +11,16 @@
 
 body { background-image:#34495e; background-color : #FFFFF1;} 
 
-.joinForm { position:absolute; width:400px; height:400px; padding: 30px, 20px; background-color: #FFFFF1;
+.adjoinForm { position:absolute; width:400px; height:400px; padding: 30px, 20px; background-color: #FFFFF1;
  text-align:center; top:40%; left:50%; transform: translate(-50%,-50%); border-radius: 15px;}
 
-.joinForm h2 { text-align: center;margin: 30px;}
+.adjoinForm h2 { text-align: center;margin: 30px;}
 
 .textForm { border-bottom: 2px solid #adadad; margin: 30px; padding: 10px 10px;}
 
 .h4 {color: #f62b33; font-size:8px; height:25px; background: none; }
 
-.sid { width: 100%; border:none; outline:none; color: #636e72; font-size:16px; height:25px; background: none;}
+.aid { width: 100%; border:none; outline:none; color: #636e72; font-size:16px; height:25px; background: none;}
 
 .pwd { width: 100%; border:none; outline:none; color: #636e72; font-size:16px; height:25px; background: none;}
 
@@ -123,16 +123,11 @@ function join()
 	}
 </script>
 <body>
-<header>
-        
-        <h1><img id='center'src="/JavaWeb/images/logo-new2208.png"></h1>  
-    
-</header>
 
  <main>
     <form class="adjoinForm" id="adjoinForm">
                                                                                                
-      <h2>회원가입</h2>
+      <h2>관리자 회원가입</h2>
        <input type="hidden" name="cmd" value="join">
       
       <div class="textForm">

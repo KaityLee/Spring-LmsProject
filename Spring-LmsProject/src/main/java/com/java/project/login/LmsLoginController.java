@@ -4,8 +4,6 @@ package com.java.project.login;
 import java.util.HashMap;
 import java.util.Map;
 
-
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,12 +28,13 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @RequestMapping("/lmslogin")
 public class LmsLoginController {
-	
+
+	@Autowired
+	private HttpSession session;
+		
     @Autowired
     private LmsLoginService svc;
     
-    @Autowired
-    private HttpSession session;
     
 	@GetMapping("/login")
 	public String login(HttpServletRequest request)
@@ -43,9 +42,9 @@ public class LmsLoginController {
 		return "lms/LmsLoginForm";
 	}
 	
-	@PostMapping("/login")
+	@PostMapping("/login") //현명
 	@ResponseBody
-	public Map<String,Object> login(Student student)
+	public Map<String,Object> login(StudentVO student)
 	{
 		Student stu = svc.login(student.getSid(), student.getPwd());
 		log.info("컨트롤러={}",stu);
@@ -54,6 +53,7 @@ public class LmsLoginController {
 		{
 			session.setAttribute("sid", stu.getSid());
 			map.put("suc", stu);
+			session.setAttribute("sid", stu.getSid());
 			return map;
 		}
 		else {
@@ -62,11 +62,11 @@ public class LmsLoginController {
 		}
 	}
 	
-	@PostMapping("/adminlogin")
+	@PostMapping("/adminlogin") //현명
 	@ResponseBody
 	public Map<String,Object> adminlogin(Admin admin)
 	{
-		
+
 		Admin atu = svc.adminlogin(admin.getAid(),admin.getPwd());
 		log.info("관리자컨트롤러={}",atu);
 		Map<String,Object> map = new HashMap<>();
@@ -82,13 +82,13 @@ public class LmsLoginController {
 		
 	}
 	
-	@GetMapping("/register")
+	@GetMapping("/register") //현명
 	public String register()
 	{
 		return "lms/LmsLoginJoin";
 	}
 	
-	@PostMapping("/register")
+	@PostMapping("/register") //현명
 	@ResponseBody
 	public Map<String,Object> register(Student student)
 	{
@@ -99,7 +99,7 @@ public class LmsLoginController {
 		return map;
 	}
 	
-	@PostMapping("/adminregister")
+	@PostMapping("/adminregister") //현명
 	@ResponseBody
 	public Map<String,Object> adminregister(Admin admin)
 	{
@@ -110,17 +110,16 @@ public class LmsLoginController {
 		return map;
 	}
 
-	@GetMapping("/adminlogin")
+	@GetMapping("/adminlogin") // 현명
 	public String adminlogin()
 	{
 		return "lms/Admin_Login";
 	}
 	
-
-	@GetMapping("/adminregister")
+	
+	@GetMapping("/adminregister") //현
 	public String adminregister()
 	{
 		return "lms/Admin_Regform";
 	}
-
 }

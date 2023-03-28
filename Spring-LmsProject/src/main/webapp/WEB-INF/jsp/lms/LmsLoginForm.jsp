@@ -1,6 +1,6 @@
 <%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <!DOCTYPE html>
-<html>
+<html> 
 <head>
 <meta charset="utf-8">
 <title>로그인 화면</title>
@@ -63,7 +63,7 @@ function login()
 }
 </script>
 <body>
-<h3>로그인</h3>
+<h3>사용자 로그인</h3>
 <div>
  <form id= "container" >
  <session>

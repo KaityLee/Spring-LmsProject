@@ -12,7 +12,7 @@ function logout()
    var keyword = $('#logout').serialize();
       
       $.ajax({
-         url:'lmslogin',
+         url:'adminlogin',
          method:'post',
          data: keyword,
          cache:false,
@@ -21,7 +21,7 @@ function logout()
             if(res.logout)
             { 
                alert("정상적으로 로그아웃 되었습니다");
-               location.href="lmslogin?cmd=adminloginform";
+               location.href="/lmslogin/adminlogin";
             }
             else
                {
@@ -40,7 +40,7 @@ function logout()
 <div>
     <form id='logout'>
     <input type='hidden' name='cmd' value='adminLogout'>
-    ${aid}님 좋은 하루되세요! <button type='button' onclick='logout();'>로그아웃</button>
+   	 <button type='button' onclick='logout();'>로그아웃</button>
     </form>
     </div>
 </body>

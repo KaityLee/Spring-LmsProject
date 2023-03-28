@@ -11,5 +11,10 @@
 		 ttlpages FROM quiz_report) WHERE page=#{page}
 	</select>
 
+	<select id="reportDetail"
+		parameterType="Integer"
+		resultType="map">
+		SELECT * FROM test_view WHERE num=#{num}
+	</select>
 
 </mapper>

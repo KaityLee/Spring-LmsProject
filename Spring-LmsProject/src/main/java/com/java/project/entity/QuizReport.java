@@ -1,7 +1,6 @@
 package com.java.project.entity;
 
 import java.sql.Date;
-import java.sql.Timestamp;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -15,22 +14,23 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name="QUIZ_REPORT")
-public class Report 
+public class QuizReport 
 {
-	@Id
-    @Column(name="ID")
-    private Long id;
+	 @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Column(name="NUM")
+    private int num;
     @Column(name="SID")
     private String sid;
     @Column(name="LVL_CODE")
     private int lvl_code;
+    @Column(name="STUDYDATE")
+    private Date studydate;
     @Column(name="PASS")
     private int pass;
     @Column(name="ANSWER")
     private String answer;
     @Column(name="REPLY")
     private String reply;
-    @Column(name="STUDYDATE")
-    private Timestamp studydate;
 
 }
