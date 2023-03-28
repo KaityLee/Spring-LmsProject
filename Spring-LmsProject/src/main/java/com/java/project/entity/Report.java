@@ -1,5 +1,8 @@
 package com.java.project.entity;
 
+import java.sql.Date;
+import java.sql.Timestamp;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -14,8 +17,7 @@ import lombok.Data;
 @Table(name="QUIZ_REPORT")
 public class Report 
 {
-	 @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Id
     @Column(name="ID")
     private Long id;
     @Column(name="SID")
@@ -26,5 +28,9 @@ public class Report
     private int pass;
     @Column(name="ANSWER")
     private String answer;
+    @Column(name="REPLY")
+    private String reply;
+    @Column(name="STUDYDATE")
+    private Date studydate;
 
 }

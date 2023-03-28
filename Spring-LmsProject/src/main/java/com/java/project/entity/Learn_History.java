@@ -7,18 +7,24 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import lombok.Data;
 
 @Data
 @Entity
+@SequenceGenerator(
+        name = "SEQ_GENERATOR",
+        sequenceName = "LEARN_SEQ",
+        allocationSize = 1
+)
 @Table(name = "learn_history")
 public class Learn_History {
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID")
-    private Integer id;
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_GENERATOR")
+    @Column(name = "NUM")
+    private Integer num;
 
     @Column(name = "SID")
     private String sid;

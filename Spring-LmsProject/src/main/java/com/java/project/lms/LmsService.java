@@ -19,6 +19,7 @@ import com.java.project.repo.StudentRepository;
 import com.java.project.repo.VideoRepository;
 import com.java.project.vo.ReportVO;
 import com.java.project.vo.SlevelVO;
+import com.java.project.vo.VideoVO;
 
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
@@ -27,6 +28,7 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 public class LmsService 
 {
+	@Autowired
 	private LearnHistoryRepository learnHistoryRepository;
 	
 	private ReportRepository reportRepository;
@@ -166,7 +168,7 @@ public class LmsService
 		Optional<Student> student = studentRepository.findById(sid);
 		if(student.isPresent()) {
 			Student stu = student.get();
-		    String email = stu.getEmail(); 
+		    String email = stu.getEmail();
 		    String phone = stu.getPhone();
 		    Student sv = new Student();
 		    sv.setSid(sid);
@@ -177,27 +179,35 @@ public class LmsService
 		return null;
 	}	
 
-	public Map<String,Object> getStudy(int lvl_code)  // 주성 : 학습자료 출력.
+	public Map<String,Object> getStudy(String sid,int lvl_code)  // 주성 : 학습자료 출력.
 	{
 		Map<String,Object> map = dao.getVideoByLvl_code(lvl_code);
-		return map;	//lvl_code에 해당하는 quiz와 그에 맞는 VideoVO를 넣은 map을 출력.
+		log.info(map.toString());
+		String title = (String)map.get("TITLE");
+		String fname = (String)map.get("FNAME");
+		String duration = (String)map.get("DURATION");
+		String description = (String)map.get("DESCRIPTION");
+		Report rv = learnHistoryRepository.getReport(sid, lvl_code);
+		if(rv==null)
+		{
+			rv = new Report();
+			rv.setPass(0);
+			rv.setReply("아직 답변이 존재하지 않습니다");
+		}
+		VideoVO video = new VideoVO(lvl_code,title,fname,duration,description);
+		String quiz = (String)map.get("LEVELTEST");
+		Map<String,Object> map2 = new HashMap<>();
+		map2.put("quiz", quiz);	//위의 VideoVO객체와 quiz변수를 함께 내보내기 위해 map에 넣는다.
+		map2.put("video", video);
+		map2.put("rv", rv);
+		return map2;	//lvl_code에 해당하는 quiz와 그에 맞는 VideoVO를 넣은 map을 출력.
 
 	}
 	
-	public boolean postQuiz(String sid, String answer, int lvl_code) //주성 : 과제(퀴즈) 제출 DB에 입력 
+	public boolean postQuiz(ReportVO report) //주성 : 과제(퀴즈) 제출 DB에 입력 
 	{
-		Report report = new Report();
-        report.setSid(sid);
-        report.setAnswer(answer);
-        report.setLvl_code(lvl_code);
-        report.setPass(0);
-        try {
-            reportRepository.save(report); // quiz_report 테이블에 id,lvl_code,답변을 저장
-            return true;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return false;
+        int rows = dao.postReport(report);// quiz_report 테이블에 id,lvl_code,답변을 저장
+        return rows>0;
     }
 	
 	public void setHistory(String sid, int lvl_code)	//주성 : learn_history에 학습정보(lvl_code) 기록 
