@@ -84,7 +84,7 @@ function pgColor()
     </header>
 <main>
 <p>
-<%@ include file='/WEB-INF/jsp/lms/Admin_Login_inc.jsp' %>
+<%@ include file='/WEB-INF/jsp/lms/Admin_Logout.jsp' %>
 </p>
 <h3> 채점목록 </h3>
 <table>

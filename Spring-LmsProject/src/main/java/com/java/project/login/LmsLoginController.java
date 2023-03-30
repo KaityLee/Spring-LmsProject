@@ -75,6 +75,7 @@ public class LmsLoginController {
 		if (atu != null)
 		{
 			map.put("suc", atu);
+			session.setAttribute("aid", atu.getAid());
 			return map;
 		}
 		else {
@@ -120,10 +121,35 @@ public class LmsLoginController {
 	
 	
 	
-	@GetMapping("/adminregister") //현
+	@GetMapping("/adminregister") //현명
 	public String adminregister()
 	{
 		return "lms/Admin_Regform";
 	}
+	
+	@GetMapping("/find")
+	public String userfind()
+	{
+		return "lms/lmsFind";
+	}
+	
+	@PostMapping("/find")
+	@ResponseBody
+	public Map<String,Object> find(String sid, String email)
+	{
+		Map<String,Object> map = new HashMap<>();
+		
+		map.put("finded",svc.find(sid, email));
+		
+		return map;
+	}
+	
+	
+	@GetMapping("/adminfind")
+	public String adminfind()
+	{
+		return "lms/Admin_Find";
+	}
+	
 	
 }

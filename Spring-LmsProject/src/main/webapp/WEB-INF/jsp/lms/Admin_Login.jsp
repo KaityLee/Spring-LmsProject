@@ -77,8 +77,7 @@ function Login()
         
         <ul class="btm">
          <li>회원가입 <a href="/lmslogin/adminregister">회원가입</a></li>
-         <li>아이디를 잊으셨나요?<a href="">아이디 찾기</a></li>
-         <li>비밀번호를 잊으셨나요?<a href="">비밀번호 찾기</a></li>
+         <li>비밀번호를 잊으셨나요?<a href="/lmslogin/adminfind">비밀번호 찾기</a></li>
         </ul>
     </div>
     </session>
