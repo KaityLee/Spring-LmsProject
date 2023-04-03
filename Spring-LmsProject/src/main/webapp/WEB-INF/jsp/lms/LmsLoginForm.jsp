@@ -80,7 +80,7 @@ function login()
             </ul>
             
            <ul class="btm">
-            <li>비밀번호를 잊으셨나요?<a href="">비밀번호 찾기</a></li>
+            <li>비밀번호를 잊으셨나요?<a href="/lmslogin/find">비밀번호 찾기</a></li>
             <li>회원가입하기<a href='/lmslogin/register'>회원가입</a></li>
            </ul>
        </div>

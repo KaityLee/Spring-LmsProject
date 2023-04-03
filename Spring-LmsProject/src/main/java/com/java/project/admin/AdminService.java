@@ -103,11 +103,9 @@ public class AdminService {
 	/** 관리자가 통과시켰을때 pass를 1로 바꿔주는 메소드 - 소영*/
 	public boolean reportPass(int num)
 	{
-		ReportVO report = new ReportVO();
-		
 		try {
-	        reportRepository.reportPass(num);
-	        return true;
+	        int rows = reportRepository.reportPass(num);
+	        return rows>0;
 	    } catch (Exception e) {
 	        e.printStackTrace();
 	    }
@@ -117,8 +115,8 @@ public class AdminService {
 	/** 관리자의 답변을 저장시키는 메소드 - 소영*/
 	public boolean reportReply(int num, String reply) {
 	    try {
-	        reportRepository.reportReply(num, reply);
-	        return true;
+	        int rows = reportRepository.reportReply(num, reply);
+	        return rows>0;
 	    } catch (Exception e) {
 	        e.printStackTrace();
 	    }

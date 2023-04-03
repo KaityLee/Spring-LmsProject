@@ -9,13 +9,13 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.java.project.entity.Learn_History;
-import com.java.project.entity.QuizReport;
+import com.java.project.entity.Quiz_Report;
 
 
 public interface LearnHistoryRepository extends JpaRepository<Learn_History, Integer>{
 
 	@Query(value = "SELECT MAX(lvl_code) as lvl_code FROM Learn_History WHERE sid = :sid")
-    QuizReport findMaxLevelBySid(@Param("sid") String sid);
+    Quiz_Report findMaxLevelBySid(@Param("sid") String sid);
 	
 	@Modifying
     @Transactional

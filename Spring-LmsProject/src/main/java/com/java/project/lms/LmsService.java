@@ -10,7 +10,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.java.project.entity.QuizReport;
+import com.java.project.entity.Quiz_Report;
 import com.java.project.entity.Student;
 import com.java.project.mybatis.LmsMapper;
 import com.java.project.repo.LearnHistoryRepository;
@@ -155,7 +155,7 @@ public class LmsService
 	        sv.setEmail(email);
 	        sv.setPhone(phone);
 	        map.put("sv", sv);
-	        QuizReport rv = new QuizReport();
+	        Quiz_Report rv = new Quiz_Report();
 	        rv.setLvl_code(lvlCode);
 	        rv.setPass(pass);
 	        map.put("rv", rv);
@@ -187,7 +187,7 @@ public class LmsService
 	
 	public boolean postQuiz(String sid, String answer, int lvl_code) //주성 : 과제(퀴즈) 제출 DB에 입력 
 	{
-		QuizReport report = new QuizReport();
+		Quiz_Report report = new Quiz_Report();
         report.setSid(sid);
         report.setAnswer(answer);
         report.setLvl_code(lvl_code);

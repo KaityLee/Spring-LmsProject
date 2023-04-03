@@ -26,7 +26,6 @@ function pass()
 {      
    if(!confirm("문제를 통과하였습니까?")) return;
       var num = ${report.num};
-      
       $.ajax({
          url :'/lms/pass',   
          method : 'post',
@@ -38,7 +37,7 @@ function pass()
               alert(res.pass?'전송되었습니다' : '전송 실패');
               if(res.pass)
               {
-                  location.href='lms?cmd=reportList';
+                  location.href='/admin/list';
               }
          },
          error : function(xhr,status,err){
@@ -94,18 +93,19 @@ function reply()
    a { color: #73685d;} 
    h3 { font-size:30px ;width:fit-content; margin:0 auto; padding-bottom:1em; color:black; }
    
-  #container { padding:1em; width:70%; margin:0 auto;
+  #container { text-align: center;padding:1em; width:70%; margin:0 auto;
    background: #73685d; border: 1px #a39485 solid;  font-size: .9em;
      box-shadow: 0 2px 5px rgba(0,0,0,.25);  ;
      border-collapse: collapse;  border-radius: 5px;
      overflow: hidden;}
-    button { width:fit-content; margin: 0 auto; button-color:#f5f5f5; }
+    button {padding: 0.2rem 0.75rem; width:fit-content; margin: 0 auto; button-color:#f5f5f5; }
     textarea {
     width: 100%;
     height: 6.25em;
     border: none;
     resize: none;
   }
+  #reply{color:red;}
    #replyform {width:fit_content;resize:none;}
 </style>
 </head>
