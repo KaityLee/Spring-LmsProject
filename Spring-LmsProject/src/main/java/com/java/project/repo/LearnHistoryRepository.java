@@ -29,7 +29,7 @@ public interface LearnHistoryRepository extends JpaRepository<Learn_History, Int
 	int updateLearnHistoryEnd(@Param("sid") String sid, @Param("lvl_code") int lvl_code);
 
 	
-	@Query(value="SELECT reply,pass FROM Report WHERE sid= :sid AND lvl_code= :lvl_code AND studydate="
+	@Query(value="SELECT reply,pass FROM QuizReport WHERE sid= :sid AND lvl_code= :lvl_code AND studydate="
 					+ "(SELECT MAX(studydate) FROM Report WHERE sid= :sid AND lvl_code= :lvl_code)")
-	Report getReport(@Param("sid") String sid, @Param("lvl_code") int lvl_code);
+	QuizReport getReport(@Param("sid") String sid, @Param("lvl_code") int lvl_code);
 }
