@@ -9,7 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.java.project.entity.Learn_History;
 import com.java.project.entity.QuizReport;
 import com.java.project.vo.ReportVO;
-import com.java.project.entity.Report;
 
 public interface LearnHistoryRepository extends JpaRepository<Learn_History, Integer>{
 
@@ -29,7 +28,8 @@ public interface LearnHistoryRepository extends JpaRepository<Learn_History, Int
 	int updateLearnHistoryEnd(@Param("sid") String sid, @Param("lvl_code") int lvl_code);
 
 	
-	@Query(value="SELECT reply,pass FROM Report WHERE sid= :sid AND lvl_code= :lvl_code AND studydate="
-					+ "(SELECT MAX(studydate) FROM Report WHERE sid= :sid AND lvl_code= :lvl_code)")
-	Report getReport(@Param("sid") String sid, @Param("lvl_code") int lvl_code);
+	@Query(value="SELECT reply,pass FROM quiz_report WHERE sid= :sid AND lvl_code= :lvl_code AND studydate="
+					+ "(SELECT MAX(studydate) FROM quiz_report WHERE sid= :sid AND lvl_code= :lvl_code)")
+	QuizReport getReport(@Param("sid") String sid, @Param("lvl_code") int lvl_code);
+
 }

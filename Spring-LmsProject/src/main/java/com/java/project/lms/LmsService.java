@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.java.project.entity.QuizReport;
-import com.java.project.entity.Report;
 import com.java.project.entity.Student;
 import com.java.project.mybatis.LmsMapper;
 import com.java.project.repo.LearnHistoryRepository;
@@ -184,15 +183,14 @@ public class LmsService
 	public Map<String,Object> getStudy(String sid,int lvl_code)  // 주성 : 학습자료 출력.
 	{
 		Map<String,Object> map = dao.getVideoByLvl_code(lvl_code);
-		log.info(map.toString());
 		String title = (String)map.get("TITLE");
 		String fname = (String)map.get("FNAME");
 		String duration = (String)map.get("DURATION");
 		String description = (String)map.get("DESCRIPTION");
-		Report rv = learnHistoryRepository.getReport(sid, lvl_code);
+		QuizReport rv = learnHistoryRepository.getReport(sid, lvl_code);
 		if(rv==null)
 		{
-			rv = new Report();
+			rv = new QuizReport();
 			rv.setPass(0);
 			rv.setReply("아직 답변이 존재하지 않습니다");
 		}

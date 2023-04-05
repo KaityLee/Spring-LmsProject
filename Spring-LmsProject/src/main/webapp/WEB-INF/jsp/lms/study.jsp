@@ -40,6 +40,23 @@ $(function(){
    $('#show').css('display','none');
 });
 
+window.addEventListener("beforeunload",(event) => {
+		var end = $('#end').serialize();
+		$.ajax({
+		   url : '/lms/end_study',
+		   method:'post',
+		   data : end,
+		   dataType : 'json',
+		   cache : false,
+		   success : function(res){
+		   },
+		   error : function(xhr,status,err){
+		      alert(err);
+		   }
+		});
+	}
+);
+
 if(${rv.pass}==0){
 	setTimeout(show_button, 1000);
 }

@@ -66,7 +66,6 @@ public class LmsController {
 		m.addAttribute("quiz",map.get("quiz"));
 		m.addAttribute("video",map.get("video"));
 		m.addAttribute("rv",map.get("rv"));
-		log.info(map.get("rv").toString());
 		return "lms/study";
 	}
 	
