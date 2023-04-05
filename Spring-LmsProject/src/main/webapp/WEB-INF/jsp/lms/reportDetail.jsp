@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>...</title>
+<title>답안 확인</title>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
 <script type="text/javascript">
 $(function(){
