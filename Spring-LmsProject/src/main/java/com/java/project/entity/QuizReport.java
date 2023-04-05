@@ -14,13 +14,13 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name="quiz_report")
-public class Quiz_Report 
+@Table(name="QUIZ_REPORT")
+public class QuizReport 
 {
 	@Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name="NUM")
-    private Integer num;
+    private int num;
 	
     @Column(name="SID")
     private String sid;
@@ -30,12 +30,12 @@ public class Quiz_Report
     
     @Column(name="STUDYDATE")
     private Timestamp studydate;
-    
-    @Column(name="PASS")
-    private Integer pass;
-    
+
     @Column(name="ANSWER")
     private String answer;
+    
+    @Column(name="PASS")
+    private int pass;
     
     @Column(name="REPLY")
     private String reply;

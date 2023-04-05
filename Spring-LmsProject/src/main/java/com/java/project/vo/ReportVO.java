@@ -15,7 +15,5 @@ public class ReportVO {
 	private String answer;
 	private int pass;
 	private String reply;
-	
-	
-	
+
 }
