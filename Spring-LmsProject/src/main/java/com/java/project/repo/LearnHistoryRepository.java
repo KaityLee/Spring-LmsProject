@@ -7,7 +7,6 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.java.project.entity.Learn_History;
-import com.java.project.entity.Report;
 import com.java.project.vo.ReportVO;
 import com.java.project.entity.QuizReport;
 
@@ -30,6 +29,6 @@ public interface LearnHistoryRepository extends JpaRepository<Learn_History, Int
 
 	
 	@Query(value="SELECT reply,pass FROM QuizReport WHERE sid= :sid AND lvl_code= :lvl_code AND studydate="
-					+ "(SELECT MAX(studydate) FROM Report WHERE sid= :sid AND lvl_code= :lvl_code)")
+					+ "(SELECT MAX(studydate) FROM QuizReport WHERE sid= :sid AND lvl_code= :lvl_code)")
 	QuizReport getReport(@Param("sid") String sid, @Param("lvl_code") int lvl_code);
 }
