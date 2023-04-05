@@ -27,7 +27,7 @@ function pass()
    if(!confirm("문제를 통과하였습니까?")) return;
       var num = ${report.num};
       $.ajax({
-         url :'/lms/pass',   
+         url :'/admin/pass',   
          method : 'post',
          data : {"num":num},              
          cache : false,
@@ -57,12 +57,12 @@ function replyForm()
 function reply()
 {
    if(!confirm("답변을 제출하겠습니까?")) return;
-   var reply = $('#replyForm').val();
+   var reply = $('#replyForm').val().replace(/\n/g, "<br/>");
    console.log("reply"+reply);
    var num = ${report.num};
    
    $.ajax({
-      url :'lms',   
+      url :'/admin/reply',   
       method : 'post',
       data : {"reply":reply,"num":num},              
       cache : false,
@@ -72,7 +72,7 @@ function reply()
            alert(res.saved?'전송되었습니다' : '전송 실패');
            if(res.saved)
            {
-               location.href='lms/list';
+               location.href='/admin/list';
            }
       },
       error : function(xhr,status,err){
@@ -143,7 +143,7 @@ function reply()
 <p>
 <div id='btn'>
 <button id='pass' onclick="pass();">합격</button>
-<button id='reply' onclick="replyForm();">불합격</a></button>
+<button id='reply' onclick="replyForm();">불합격</button>
 </div>
 <div id='replyblank'></div>
 

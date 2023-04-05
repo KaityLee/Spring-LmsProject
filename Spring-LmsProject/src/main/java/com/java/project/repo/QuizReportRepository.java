@@ -24,15 +24,17 @@ public interface QuizReportRepository  extends JpaRepository<QuizReport, Integer
     @Query("UPDATE quiz_report qr SET qr.reply = :reply WHERE qr.num = :num")
     public Integer reportReply(@Param("num") int num, @Param("reply") String reply);
     */
-    @Query(value = "SELECT DISTINCT s.sid,q.email,q.phone,q.lvl_code,q.pass FROM QUIZ_REPORT q INNER JOIN STUDENT s ON q.sid=s.sid WHERE s.sid=:sid AND lvl_code=(SELECT DISTINCT MAX(lvl_code) FROM QUIZ_REPORT WHERE sid=:sid)")
+    @Query(value = "SELECT DISTINCT s.sid,s.email,s.phone,q.lvl_code,q.pass FROM QuizReport q INNER JOIN Student s ON q.sid=s.sid WHERE s.sid=:sid AND lvl_code=(SELECT DISTINCT MAX(lvl_code) FROM QuizReport WHERE sid=:sid)")
     public List<Object[]> getInfo(@Param("sid") String sid);
 
     @Modifying
-    @Query(value = "UPDATE quiz_report q SET q.pass = 1 WHERE q.num =:num")
+	@Transactional
+    @Query(value = "UPDATE QuizReport q SET q.pass = 1 WHERE q.num =:num")
     public int reportPass(@Param("num") int num);
 
     @Modifying
-    @Query(value = "UPDATE quiz_report q SET q.reply = :reply WHERE q.num = :num")
+	@Transactional
+    @Query(value = "UPDATE QuizReport q SET q.reply = :reply WHERE q.num = :num")
     public int reportReply(@Param("reply") String reply,@Param("num") int num);
 
 }

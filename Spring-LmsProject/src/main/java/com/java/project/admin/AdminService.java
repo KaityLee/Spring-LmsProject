@@ -2,12 +2,16 @@ package com.java.project.admin;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import org.hibernate.dialect.Oracle10gDialect;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,9 +22,11 @@ import com.java.project.vo.QuizVO;
 import com.java.project.vo.ReportVO;
 import com.java.project.vo.SlevelVO;
 
+
 @Service
 public class AdminService {
 	
+	@Autowired
 	private QuizReportRepository reportRepository;
 	
 	@Autowired
@@ -103,7 +109,6 @@ public class AdminService {
 	}
 	
 	/** 관리자가 통과시켰을때 pass를 1로 바꿔주는 메소드 - 소영*/
-	@Transactional
 	public boolean reportPass(int num)
 	{
 		try {
@@ -116,7 +121,6 @@ public class AdminService {
 	}
 	
 	/** 관리자의 답변을 저장시키는 메소드 - 소영*/
-	@Transactional
 	public boolean reportReply(int num, String reply) {
 	    try {
 	        int rows = reportRepository.reportReply(reply, num);

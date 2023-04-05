@@ -141,44 +141,6 @@ public class LmsService
 		log.info("map : "  + map);
 		return map;
 	}
-	
-	
-	public Map<String,Object> myInfo(String sid) 
-	{		
-		List<Object[]> resultList = reportRepository.getInfo(sid);
-	    Map<String,Object> map = new HashMap<>();
-	    for(Object[] result : resultList) {
-	        String email = (String)result[1];
-	        String phone = (String)result[2];
-	        int lvlCode = (Integer)result[3];
-	        int pass = (Integer)result[4];
-	        Student sv = new Student();
-	        sv.setSid(sid);
-	        sv.setEmail(email);
-	        sv.setPhone(phone);
-	        map.put("sv", sv);
-	        QuizReport rv = new QuizReport();
-	        rv.setLvl_code(lvlCode);
-	        rv.setPass(pass);
-	        map.put("rv", rv);
-	    }
-	    return map;
-	}	
-
-	public Student newInfo(String sid) {
-		Optional<Student> student = studentRepository.findById(sid);
-		if(student.isPresent()) {
-			Student stu = student.get();
-		    String email = stu.getEmail();
-		    String phone = stu.getPhone();
-		    Student sv = new Student();
-		    sv.setSid(sid);
-		    sv.setEmail(email);
-		    sv.setPhone(phone);
-		    return sv;	
-		}
-		return null;
-	}	
 
 	public Map<String,Object> getStudy(String sid,int lvl_code)  // 주성 : 학습자료 출력.
 	{
