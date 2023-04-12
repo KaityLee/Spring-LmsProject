@@ -32,8 +32,12 @@
 			parameterType="Integer"
 			resultType="map">
 			
-		SELECT v.*,q.leveltest FROM (SELECT * FROM video WHERE lvl_code =?) v INNER JOIN quiz q ON v.lvl_code=q.lvl_code
+		SELECT v.*,q.leveltest FROM (SELECT * FROM video WHERE lvl_code =#{lvl_code}) v INNER JOIN quiz q ON v.lvl_code=q.lvl_code
 		
 	</select>
 
+	<insert id="postReport" 
+			parameterType="com.java.project.vo.ReportVO">
+		INSERT INTO quiz_report(num,pass,sid,answer,lvl_code,studydate)  VALUES (ANS_SEQ.NEXTVAL,0,#{sid},#{answer},#{lvl_code},SYSDATE)
+	</insert>
 </mapper>

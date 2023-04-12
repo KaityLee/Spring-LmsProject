@@ -47,7 +47,7 @@ function Login()
         	 alert(res.suc? "환영합니다" : "다시 로그인 해주세요" );
         	 if(res.suc)
             { 
-               location.href='/lms/report_list';
+               location.href='/admin/list';
             }
         	
           },
@@ -76,8 +76,7 @@ function Login()
         
         <ul class="btm">
          <li>회원가입 <a href="/lmslogin/adminregister">회원가입</a></li>
-         <li>아이디를 잊으셨나요?<a href="">아이디 찾기</a></li>
-         <li>비밀번호를 잊으셨나요?<a href="">비밀번호 찾기</a></li>
+         <li>비밀번호를 잊으셨나요?<a href="/lmslogin/adminfind">비밀번호 찾기</a></li>
         </ul>
     </div>
     </session>

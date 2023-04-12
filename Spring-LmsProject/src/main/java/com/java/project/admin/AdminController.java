@@ -34,8 +34,9 @@ public class AdminController {
 		List<Map<String, Object>> list = svc.getReportList(pg);
 		
 		m.addAttribute("list", list);
+		log.info(list.toString());
 		m.addAttribute("page",pg);
-		
+		log.info(Integer.toString(pg) );
 		return "lms/reportList";
 	}
 	
@@ -65,6 +66,7 @@ public class AdminController {
 	{
 		boolean saved = svc.reportReply(num, reply);
 		Map<String,Object> map = new HashMap<>();
+		map.put("saved", saved);
 		return map;
 	}
 }

@@ -40,6 +40,7 @@ function logout()
 <div>
     <form id='logout'>
     <input type='hidden' name='cmd' value='adminLogout'>
+   	 <span>관리자님 환영합니다</span>
    	 <button type='button' onclick='logout();'>로그아웃</button>
     </form>
     </div>

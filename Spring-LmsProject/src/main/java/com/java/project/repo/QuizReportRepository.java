@@ -7,10 +7,9 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.java.project.entity.QuizReport;
-
-
 
 
 public interface QuizReportRepository  extends JpaRepository<QuizReport, Integer> {
@@ -20,20 +19,22 @@ public interface QuizReportRepository  extends JpaRepository<QuizReport, Integer
     @Modifying
     @Query("UPDATE quiz_report qr SET qr.pass = 1 WHERE qr.num = :num")
     public Integer reportPass(@Param("num") int num);
-    
+    s
     @Modifying
     @Query("UPDATE quiz_report qr SET qr.reply = :reply WHERE qr.num = :num")
     public Integer reportReply(@Param("num") int num, @Param("reply") String reply);
     */
-    @Query(value = "SELECT DISTINCT s.sid,email,phone,lvl_code,pass FROM QUIZ_REPORT q INNER JOIN STUDENT s ON q.sid=s.sid WHERE s.sid=:sid AND lvl_code=(SELECT DISTINCT MAX(lvl_code) FROM QUIZ_REPORT WHERE sid=:sid)", nativeQuery = true)
+    @Query(value = "SELECT DISTINCT s.sid,s.email,s.phone,q.lvl_code,q.pass FROM QuizReport q INNER JOIN Student s ON q.sid=s.sid WHERE s.sid=:sid AND lvl_code=(SELECT DISTINCT MAX(lvl_code) FROM QuizReport WHERE sid=:sid)")
     public List<Object[]> getInfo(@Param("sid") String sid);
 
     @Modifying
-    @Query(value = "UPDATE quiz_report qr SET qr.pass = 1 WHERE qr.num = :num", nativeQuery = true)
-    public Integer reportPass(@Param("num") int num);
+	@Transactional
+    @Query(value = "UPDATE QuizReport q SET q.pass = 1 WHERE q.num =:num")
+    public int reportPass(@Param("num") int num);
 
     @Modifying
-    @Query(value = "UPDATE quiz_report qr SET qr.reply = :reply WHERE qr.num = :num", nativeQuery = true)
-    public Integer reportReply(@Param("num") int num, @Param("reply") String reply);
+	@Transactional
+    @Query(value = "UPDATE QuizReport q SET q.reply = :reply WHERE q.num = :num")
+    public int reportReply(@Param("reply") String reply,@Param("num") int num);
 
 }

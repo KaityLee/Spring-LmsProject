@@ -5,6 +5,8 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.java.project.vo.ReportVO;
+
 @Mapper
 public interface LmsMapper {
 
@@ -16,5 +18,5 @@ public interface LmsMapper {
 
 	public Map<String, Object> getVideoByLvl_code(int lvl_code);
 	
-	
+	public int postReport(ReportVO report);
 }

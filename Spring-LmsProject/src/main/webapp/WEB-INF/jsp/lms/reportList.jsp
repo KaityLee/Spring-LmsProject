@@ -24,9 +24,12 @@ header .option div {width: 220px; height: 50px;}
      overflow: hidden;}
    th {  text-align: left;}  
    thead {  font-weight: bold;  color: #fff; background: #73685d;}  
+   tr.row{background-color: #fff;}
+    tr.row:hover{ background-color:  #f5f5f5;}
     td, th {  padding: 1em;  vertical-align: middle;}  
-    td {  border-bottom: 1px solid rgba(0,0,0,.1); background: #fff;}
-   a { color: #73685d;} 
+    td {  border-bottom: 1px solid rgba(0,0,0,.1); }
+   a { color: black;} 
+   a:hover{color:#a39485;}
     tbody {    overflow-x: auto; overflow-y: hidden;
     position: relative;    white-space: nowrap;}
    main{width:70% ; margin:0 auto;}
@@ -60,24 +63,14 @@ function pgColor()
 <body>
 <header>
         
-            <img id='left'src="/JavaWeb/images/badge-best-campus-common.png">
-            <h1><img id='center'src="/JavaWeb/images/logo-new2208.png"></h1>
+            <img id='left'src="/images/badge-best-campus-common.png">
+            <h1><img id='center'src="/images/logo-new2208.png"></h1>
         <div class="option">
             <div class="right_top">
-             <ul>
-                <li><a href="/ezen/campus/campus_info.asp">캠퍼스위치</a></li>
-                <li><a href="/ezen/license/?scc=1">자격증소개</a></li>
-                <li><a href="/ezen/community/review.asp">수강후기</a></li>
-             </ul>
+            
              </div>
              <div class="right_btm">
-             <ul>
-                <li><a href="/ezen/club/" class="link" target="_blank">강사클럽</a></li>
-                <li><a href="/ezen/community/book_list.asp" class="link" target="_blank">교재</a></li>
-                <li><a href="https://edu.ezenac.co.kr/" class="link" target="_blank">온라인에듀</a></li>
-                <li><a href="//member.ezenac.co.kr/ezen/member/member_join.asp" class="link sign">회원가입</a></li>
-                <li><a href="//member.ezenac.co.kr/ezen/member/member_login.asp" class="link login">로그인</a></li>            
-             </ul>
+             
             </div>
         </div>
         
@@ -94,21 +87,21 @@ function pgColor()
 <tbody>
    <c:forEach var="map" items="${list}">
    	<c:set var="report" value="${map.report}"/>
-      <tr>
-         <td>${report.num}</td>
-         <td>
+      <tr class="row">
+         <td><a id='tag' href="/admin/detail?num=${report.num}">${report.num}</a></td>
+         <td><a id='tag' href="/admin/detail?num=${report.num}">
          <c:set var="lvl_code" value="${report.lvl_code}"/>
-         ${map.slevel.subject_name}
+         ${map.slevel.subject_name}</a>
          </td>
-         <td><a id='tag' href="lms/detail&num=${report.num}">${report.sid}</a></td>
-         <td>${report.studydate}</td>
-         <td>
+         <td><a id='tag' href="/admin/detail?num=${report.num}">${report.sid}</a></td>
+         <td><a id='tag' href="/admin/detail?num=${report.num}">${report.studydate}</a></td>
+         <td><a id='tag' href="/admin/detail?num=${report.num}">
          <c:set var="pass" value="${report.pass}"/>
          <c:set var="reply" value="${report.reply}"/>
          <c:if test="${pass==1}">합격</c:if>
          <c:if test="${pass==0&&reply==null}">미채점</c:if>
-         <c:if test="${pass==0&&reply!=null}"><p>불합격</p></c:if>
-         </td>
+         <c:if test="${pass==0&&reply!=null}">불합격</c:if>
+         </a></td>
       </tr>
    </c:forEach>
 </tbody>

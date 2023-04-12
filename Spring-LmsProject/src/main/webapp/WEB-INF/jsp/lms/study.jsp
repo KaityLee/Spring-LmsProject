@@ -30,8 +30,8 @@
    blockquote:after {content: "\201C"; font-size: 76px; position: absolute; top: -15px;left: 10px; color: #0E5E6F;}
    .entry-content blockquote p { max-width: 100%;padding: 0;margin: 0 0 15px;font-size: 20px;}
    .separator--line {margin-top:2em;  border: 0; border-bottom:3px solid #434242; width: 0; animation: separator-width 1.5s ease-out forwards;}
-   @keyframes separator-width { 0% { width: 0;} 100% { width: 85%;}
-}
+   @keyframes separator-width { 0% { width: 0;} 100% { width: 85%;}}
+   blockquote { color:grey; }
 </style>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
 <script>
@@ -39,6 +39,23 @@ $(function(){
    $('#assign_form').css('display','none');
    $('#show').css('display','none');
 });
+
+window.addEventListener("beforeunload",(event) => {
+		var end = $('#end').serialize();
+		$.ajax({
+		   url : '/lms/end_study',
+		   method:'post',
+		   data : end,
+		   dataType : 'json',
+		   cache : false,
+		   success : function(res){
+		   },
+		   error : function(xhr,status,err){
+		      alert(err);
+		   }
+		});
+	}
+);
 
 if(${rv.pass}==0){
 	setTimeout(show_button, 1000);
@@ -58,14 +75,14 @@ function submit_assign(){
       {
           var data = $('#assignment').serialize();
             $.ajax({
-               url : 'lms/post',
+               url : '/lms/post',
                method:'post',
                data : data,
                dataType : 'json',
                cache : false,
                success : function(res){
                   alert(res.suc ? "제출 완료" : "제출 실패");
-                  location.href="lms/list";
+                  location.href="/lms/list";
                },
                error : function(xhr,status,err){
                   alert(err);
@@ -79,14 +96,14 @@ function end() {
    {
       var end = $('#end').serialize();
          $.ajax({
-            url : 'lms/end_study',
+            url : '/lms/end_study',
             method:'post',
             data : end,
             dataType : 'json',
             cache : false,
             success : function(res){
                alert(res.suc ? "학습종료" : "에러");
-               location.href="lms/list";
+               location.href="/lms/list";
             },
             error : function(xhr,status,err){
                alert(err);
