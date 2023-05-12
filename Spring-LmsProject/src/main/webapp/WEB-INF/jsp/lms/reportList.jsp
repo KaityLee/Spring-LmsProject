@@ -109,7 +109,7 @@ function pgColor()
 <p>
 <div id='listNum'>
    <c:forEach begin="1" end="${list[0].ttlpage}" var="var">
-      <a id="${var}" href="lms/list&page=${var}" 
+      <a id="${var}" href="/admin/list?page=${var}" 
       style="text-decoration:none">[${var}]</a>
    </c:forEach>
 </div>
