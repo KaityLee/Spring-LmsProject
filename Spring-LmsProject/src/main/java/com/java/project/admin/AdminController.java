@@ -30,13 +30,11 @@ public class AdminController {
 	public String getSubjectList(@RequestParam(name = "page", defaultValue = "1") String page, Model m) 
 	{
 		int pg = Integer.parseInt(page); //페이지값 설정(pagination) : 목록
-	    
+		
 		List<Map<String, Object>> list = svc.getReportList(pg);
 		
 		m.addAttribute("list", list);
-		log.info(list.toString());
 		m.addAttribute("page",pg);
-		log.info(Integer.toString(pg) );
 		return "lms/reportList";
 	}
 	
