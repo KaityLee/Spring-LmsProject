@@ -26,6 +26,14 @@ SpringBoot+jsp+JPA_LearningManagementSystem
 ## 🔗 ERD
 https://www.erdcloud.com/d/9jfDEqhDmWHKpHT2w
 
+## 프로젝트 팀원 역할 분담
+|**이름**|**담당 업무**|
+|-------|--------|
+|박지환|팀장/홈화면 및 학습목록|
+|신현명|로그인 및 회원가입 기능|
+|이소영|전체 관리자 페이지|
+|현주성|학생 동영상 학습 페이지|
+
 ## 🎓 주요 기능
 ### Student
 회원가입 및 로그인
