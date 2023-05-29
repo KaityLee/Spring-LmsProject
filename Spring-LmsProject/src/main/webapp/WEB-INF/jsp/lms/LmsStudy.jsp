@@ -132,7 +132,7 @@ function end() {
 	</section>
 	<aside>
 	   <h3 class="block1">
-	   		${video.description }
+	   		${video.description}
 	   </h3>
 	   <button id="show" type='button' onclick='showassign();'>실습과제 작성</button>
 	   <div id="assign_form">
