@@ -21,16 +21,22 @@ public class QuizReport
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name="NUM")
     private int num;
+	
     @Column(name="SID")
     private String sid;
+    
     @Column(name="LVL_CODE")
-    private int lvl_code;
+    private Integer lvl_code;
+    
     @Column(name="STUDYDATE")
     private Timestamp studydate;
+    
     @Column(name="PASS")
     private int pass;
+    
     @Column(name="ANSWER")
     private String answer;
+        
     @Column(name="REPLY")
     private String reply;
 
