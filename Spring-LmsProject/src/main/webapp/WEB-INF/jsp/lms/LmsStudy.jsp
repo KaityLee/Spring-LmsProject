@@ -38,7 +38,7 @@ $(function(){
    $('#show').css('display','none');
 });
 
-window.addEventListener("beforeunload",(event) => {
+window.addEventListener("beforeunload",(event) => { 
 		var end = $('#end').serialize();
 		$.ajax({
 		   url : '/lms/end_study',
