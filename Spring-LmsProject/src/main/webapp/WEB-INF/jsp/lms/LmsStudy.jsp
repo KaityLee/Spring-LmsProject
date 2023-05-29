@@ -18,8 +18,6 @@
     .text {height: 10px; padding: 5px; color: #434242;}
     .block1{ position: relative; width: 40rem; max-width: 100%; margin: 4rem auto 3rem; padding: 0.5rem 1rem; line-height: 1.7; font-size: 1.1em; color: #222222;
            background: #f9f9f9; border-left: 6px solid #0E5E6F; &::before, &::after{ position: absolute; left: 0; font-size: 1rem; color: rgba(#0E5E6F, .6); }
-           &::before{ content:'<blockquote>'; top: -2rem;}
-           &::after{ content: '</blockquote>'; bottom: -2rem;}
    }
    .block2-title{ margin: 0; padding: 0 1rem 2rem; text-align: center; color: #222222; &::before, &::after{ content: ''; display: inline; width: 20px;
        height: 2px; vertical-align: middle; background: #1E4670;}
@@ -58,7 +56,9 @@ window.addEventListener("beforeunload",(event) => {
 );
 
 if(${rv.pass}==0){
-	setTimeout(show_button, 1000);
+	const duration = '${video.duration}';
+	const arr = duration.split(':');
+	setTimeout(show_button, arr[0]*60000+arr[1]*1000);
 }
 
 
@@ -125,13 +125,15 @@ function end() {
 </header>
 <main>
 	<section>
-	   <h4 class="text">학습시간:${video.duration }</h4>
+	   <h4 class="text">학습시간 : ${video.duration }</h4>
 	   <iframe width="600" height="400"
 	      src="${video.fname }?autoplay=1&mute=1">
 	   </iframe>
 	</section>
 	<aside>
-	   <h3 class="block1">${video.description }</h3>
+	   <h3 class="block1">
+	   		${video.description }
+	   </h3>
 	   <button id="show" type='button' onclick='showassign();'>실습과제 작성</button>
 	   <div id="assign_form">
 	      <form id="assignment">

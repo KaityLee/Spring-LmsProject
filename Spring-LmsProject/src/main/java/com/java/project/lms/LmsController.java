@@ -40,7 +40,6 @@ public class LmsController {
 	
 	@GetMapping("/list")
 	public String getSubjectList(Model m) {
-
 		String sid = (String)session.getAttribute("sid"); 
 
 		m.addAttribute("list",svc.getSubjectList());
@@ -66,7 +65,7 @@ public class LmsController {
 		m.addAttribute("quiz",map.get("quiz"));
 		m.addAttribute("video",map.get("video"));
 		m.addAttribute("rv",map.get("rv"));
-		return "lms/study";
+		return "lms/LmsStudy";
 	}
 	
 	@PostMapping("/post")

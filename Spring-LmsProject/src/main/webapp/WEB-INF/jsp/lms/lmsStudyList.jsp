@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>SUBJECTLIST</title>
+<title>SUBJECT LIST</title>
 </head>
 <style>
 
