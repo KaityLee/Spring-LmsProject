@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>...</title>
+<title>답안 확인</title>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
 <script type="text/javascript">
 $(function(){
@@ -26,9 +26,8 @@ function pass()
 {      
    if(!confirm("문제를 통과하였습니까?")) return;
       var num = ${report.num};
-      
       $.ajax({
-         url :'/lms/pass',   
+         url :'/admin/pass',   
          method : 'post',
          data : {"num":num},              
          cache : false,
@@ -38,7 +37,7 @@ function pass()
               alert(res.pass?'전송되었습니다' : '전송 실패');
               if(res.pass)
               {
-                  location.href='lms?cmd=reportList';
+                  location.href='/admin/list';
               }
          },
          error : function(xhr,status,err){
@@ -58,12 +57,12 @@ function replyForm()
 function reply()
 {
    if(!confirm("답변을 제출하겠습니까?")) return;
-   var reply = $('#replyForm').val();
+   var reply = $('#replyForm').val().replace(/\n/g, "<br/>");
    console.log("reply"+reply);
    var num = ${report.num};
    
    $.ajax({
-      url :'lms',   
+      url :'/admin/reply',   
       method : 'post',
       data : {"reply":reply,"num":num},              
       cache : false,
@@ -73,7 +72,7 @@ function reply()
            alert(res.saved?'전송되었습니다' : '전송 실패');
            if(res.saved)
            {
-               location.href='lms/list';
+               location.href='/admin/list';
            }
       },
       error : function(xhr,status,err){
@@ -94,18 +93,19 @@ function reply()
    a { color: #73685d;} 
    h3 { font-size:30px ;width:fit-content; margin:0 auto; padding-bottom:1em; color:black; }
    
-  #container { padding:1em; width:70%; margin:0 auto;
+  #container { text-align: center;padding:1em; width:70%; margin:0 auto;
    background: #73685d; border: 1px #a39485 solid;  font-size: .9em;
      box-shadow: 0 2px 5px rgba(0,0,0,.25);  ;
      border-collapse: collapse;  border-radius: 5px;
      overflow: hidden;}
-    button { width:fit-content; margin: 0 auto; button-color:#f5f5f5; }
+    button {padding: 0.2rem 0.75rem; width:fit-content; margin: 0 auto; button-color:#f5f5f5; }
     textarea {
     width: 100%;
     height: 6.25em;
     border: none;
     resize: none;
   }
+  #reply{color:red;}
    #replyform {width:fit_content;resize:none;}
 </style>
 </head>
@@ -143,7 +143,7 @@ function reply()
 <p>
 <div id='btn'>
 <button id='pass' onclick="pass();">합격</button>
-<button id='reply' onclick="replyForm();">불합격</a></button>
+<button id='reply' onclick="replyForm();">불합격</button>
 </div>
 <div id='replyblank'></div>
 

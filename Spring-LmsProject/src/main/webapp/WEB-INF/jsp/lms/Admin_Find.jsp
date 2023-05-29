@@ -9,18 +9,19 @@
 <style>
   * { margin: 0px; padding: 0px; text-decoration: none; font-family:sans-serif;}
 
-body { background-image:#34495e;}  /*34495e*/
+body { background-image:#34495e;}
 
-body {background-color : #FFFFF1; } 
+body {background-color: #FFFFF1;}
 
-.findForm { position:absolute; width:400px; height:400px; padding: 30px, 20px; background-color:#FFFFFF;
+
+.adfindForm { position:absolute; width:400px; height:400px; padding: 30px, 20px; background-color:#FFFFFF;
  text-align:center; top:40%; left:50%; transform: translate(-50%,-50%); border-radius: 15px;}
 
-.findForm h2 { text-align: center;margin: 30px;}
+.adfindForm h2 { text-align: center;margin: 30px;}
 
 .textForm { border-bottom: 2px solid #adadad; margin: 30px; padding: 10px 10px;}
 
-.sid { width: 100%; border:none; outline:none; color: #636e72; font-size:16px; height:25px; background: none;}
+.aid { width: 100%; border:none; outline:none; color: #636e72; font-size:16px; height:25px; background: none;}
 
 .email { width: 100%; border:none; outline:none; color: #636e72; font-size:16px; height:25px; background: none;}
 
@@ -45,11 +46,11 @@ body {background-color : #FFFFF1; }
 function find()
 {
    
-   var date = $("#findForm").serialize();
+   var date = $("#adfindForm").serialize();
    
    
    $.ajax({
-      url:'login',
+      url:'adminlogin',
       method:'post',
       data:date,
       dataType :'json',
@@ -71,22 +72,22 @@ function find()
 </script>
 <body>
 <main>
- <form class="findForm" id="findForm">
+ <form class="adfindForm" id="adfindForm">
                                                                                                
-      <h2>ID로 회원 찾기</h2>
+      <h2>ID로 관리자 찾기</h2>
        <input type="hidden" name="cmd" value="find">
       
       <div class="textForm">
-        <input id="sid" name="sid" type="text" class="sid" placeholder="ID를 입력해주세요">
+        <input id="aid" name="aid" type="text" class="aid" placeholder="아이디">
       </div>
       
 
         <div class="textForm">
-        <input id="email" name="email" type="text" class="email" placeholder="Email을 입력해주세요">
+        <input id="email" name="email" type="text" class="email" placeholder="이메일">
       </div>
    
       <button type="button" class="btn" onclick="find();">F I N D</button>
-      <button type="button" class="btn2" onclick='location.href="/lmslogin/login"'>H O M E</button>
+      <button type="button" class="btn2" onclick='location.href="/lmslogin/adminlogin"'>H O M E</button>
     </form>
     
     
